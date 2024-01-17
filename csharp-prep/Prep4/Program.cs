@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 
 class Program
 {
+    // Main Function
     static void Main(string[] args)
     {
         Console.WriteLine("Hello Prep4 World!");// Greeting Message
@@ -34,7 +35,7 @@ class Program
     //// CreateList Function
     static List<int> CreateList()
     {
-
+        // Blank List
         List<int> numbers = new List<int>();
 
         // Variables
@@ -43,7 +44,7 @@ class Program
         // Numbered List
         while (userInput != 0)
         {
-            // User List
+            // User prompt
             Console.Write("Enter a number: ");
 
             string input = Console.ReadLine();// stores input to variable
@@ -64,11 +65,11 @@ class Program
     static int ComputeSum(List<int> numbers)
     {
         int sum = 0;
-        foreach (int i in numbers)
+        foreach (int i in numbers)// for every item in the list
         {
-            sum += i;
+            sum += i;// adds item to the total sum
         }
-        return sum;
+        return sum;// returns list
     }
 
 
@@ -76,22 +77,22 @@ class Program
     static float ComputeAverage(int sum, List<int> numbers)
     {
         // Compute Average
-        int items = numbers.Count;
+        int items = numbers.Count;// counts items in List
         float average = ((float)sum) / items;// average is the total divided by the number of items
-        return average;
+        return average;// returns average
     }
 
 
     //// FindBiggestNumber Function
     static int FindBiggestNumber(List<int> numbers)
     {
-        // Biggest Number
-        int biggestNumber = numbers[0];
+        // Default Biggest Number
+        int biggestNumber = numbers[0];// first item in list
 
         // Iterates through List
         foreach (int i in numbers)
         {
-            if (i > biggestNumber)
+            if (i > biggestNumber)// if the next item is larger
             {
                 biggestNumber = i;// changes to larger number
             }
