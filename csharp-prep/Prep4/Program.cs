@@ -11,6 +11,30 @@ class Program
         Console.WriteLine("Hello Prep4 World!");// Greeting Message
 
         // Create List
+        List<int> numbers = CreateList();
+
+        // Compute Sum
+        int sum = ComputeSum(numbers);
+
+        // Compute Average
+        float average = ComputeAverage(sum, numbers);
+
+        // Find Biggest Number
+        int biggestNumber = FindBiggestNumber(numbers);
+
+        // Print Results
+        Console.WriteLine($"The sum is: {sum}");
+        Console.WriteLine($"The average is: {average}");
+        Console.WriteLine($"The largest number is: {biggestNumber}");
+    }
+
+
+    // Program Class Functions
+
+    //// CreateList Function
+    static List<int> CreateList()
+    {
+
         List<int> numbers = new List<int>();
 
         // Variables
@@ -31,27 +55,12 @@ class Program
             {
                 numbers.Add(userInput);// integers are added to list
             }
-        };
-
-
-        // Compute Sum
-        int sum = ComputeSum(numbers);
-
-        // Compute Average
-        float average = ComputeAverage(sum, numbers);
-
-        // Find Biggest Number
-        int biggestNumber = FindBiggestNumber(numbers);
-
-        // Print Results
-        Console.WriteLine($"The sum is: {sum}");
-        Console.WriteLine($"The average is: {average}");
-        Console.WriteLine($"The largest number is: {biggestNumber}");
+        }
+        return numbers;
     }
 
-    // Functions
 
-    //// ComputeSum
+    //// ComputeSum Function
     static int ComputeSum(List<int> numbers)
     {
         int sum = 0;
@@ -59,12 +68,11 @@ class Program
         {
             sum += i;
         }
-
         return sum;
     }
 
 
-    //// Compute Average
+    //// ComputeAverage Function
     static float ComputeAverage(int sum, List<int> numbers)
     {
         // Compute Average
@@ -73,7 +81,8 @@ class Program
         return average;
     }
 
-    //// Biggest Number
+
+    //// FindBiggestNumber Function
     static int FindBiggestNumber(List<int> numbers)
     {
         // Biggest Number
@@ -87,8 +96,6 @@ class Program
                 biggestNumber = i;// changes to larger number
             }
         }
-
         return biggestNumber;
     }
-
 }
