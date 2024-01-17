@@ -19,7 +19,7 @@ class Program
         DisplayResult(userName, squaredNumber);// Displays the user's name and the squared number
     }
 
-    // Functions
+    // Program Class Functions
 
     //// DisplayWelcome
     static void DisplayMessage()
