@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
         // Greeting Message
-        Console.WriteLine("Hello Prep5 World!");
+        Console.WriteLine("\nHello Prep5 World!");
 
         DisplayMessage();// Welcomes User
         string userName = PromptUserName();// Asks for name
@@ -31,7 +31,7 @@ class Program
     //// PromptUserName
     static string PromptUserName()
     {
-        Console.Write("\nPlease enter your name: ");
+        Console.Write("Please enter your name: ");
         string name = Console.ReadLine();
         return name;
     }
@@ -40,7 +40,7 @@ class Program
     //// PromptUserNumber
     static int PromptUserNumber()
     {
-        Console.Write("\nPlease enter your favorite number: ");
+        Console.Write("Please enter your favorite number: ");
         string userNumber = Console.ReadLine();
         return int.Parse(userNumber);
     }
@@ -57,6 +57,6 @@ class Program
     //// DisplayResult
     static void DisplayResult(string name, int squaredNumber)
     {
-        Console.WriteLine($"\n{name}, the square of your number is {squaredNumber}");
+        Console.WriteLine($"{name}, the square of your number is {squaredNumber}");
     }
 }
