@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 class Program
@@ -33,16 +35,47 @@ class Program
 
 
         // Compute Sum
+        int sum = ComputeSum(numbers);
+
+        // Compute Average
+        float average = ComputeAverage(sum, numbers);
+
+        // Find Biggest Number
+        int biggestNumber = FindBiggestNumber(numbers);
+
+        // Print Results
+        Console.WriteLine($"The sum is: {sum}");
+        Console.WriteLine($"The average is: {average}");
+        Console.WriteLine($"The largest number is: {biggestNumber}");
+    }
+
+    // Functions
+
+    //// ComputeSum
+    static int ComputeSum(List<int> numbers)
+    {
         int sum = 0;
-        foreach (int i in numbers)// prints each number
+        foreach (int i in numbers)
         {
             sum += i;
         }
 
+        return sum;
+    }
+
+
+    //// Compute Average
+    static float ComputeAverage(int sum, List<int> numbers)
+    {
         // Compute Average
         int items = numbers.Count;
         float average = ((float)sum) / items;// average is the total divided by the number of items
+        return average;
+    }
 
+    //// Biggest Number
+    static int FindBiggestNumber(List<int> numbers)
+    {
         // Biggest Number
         int biggestNumber = numbers[0];
 
@@ -55,9 +88,7 @@ class Program
             }
         }
 
-        // Print Results
-        Console.WriteLine($"The sum is: {sum}");
-        Console.WriteLine($"The average is: {average}");
-        Console.WriteLine($"The largest number is: {biggestNumber}");
+        return biggestNumber;
     }
+
 }

@@ -10,7 +10,7 @@ class Program
     static void Main(string[] args)
     {
         // Greeting Message
-        Console.WriteLine("\nHello Prep5 World!");
+        Console.WriteLine("\nHello Prep5 World!\n");
 
         DisplayMessage();// Welcomes User
         string userName = PromptUserName();// Asks for name
