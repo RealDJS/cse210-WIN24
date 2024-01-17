@@ -17,14 +17,15 @@ class Program
         // Numbered List
         while (userInput != 0)
         {
-            // User Enters Numbers
+            // User List
             Console.Write("Enter a number: ");
 
             string input = Console.ReadLine();// stores input to variable
 
             userInput = int.Parse(input);// converts string to int
 
-            if (userInput != 0)
+            // End List
+            if (userInput != 0)// prevents adding 0 to the list
             {
                 numbers.Add(userInput);// integers are added to list
             }
@@ -37,7 +38,6 @@ class Program
         {
             sum += i;
         }
-
 
         // Compute Average
         int items = numbers.Count;
