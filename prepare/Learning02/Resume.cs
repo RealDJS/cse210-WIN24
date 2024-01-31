@@ -1,5 +1,7 @@
 // Resume Class for Learning 02
 // Creates a list for storing Job objects
+// Author: Dennis Skoy
+// last edit: 1/29/24
 public class Resume
 {
     // Attributes
@@ -15,13 +17,15 @@ public class Resume
     public Resume()
     {
         this._name = "";
+        this._jobs = [];
     }
 
 
     //// Paramaterized Constructor
-    public Resume(string _name)
+    public Resume(string _name, List<Job> _jobs)
     {
         this._name = _name;
+        this._jobs = _jobs;
     }
 
 
