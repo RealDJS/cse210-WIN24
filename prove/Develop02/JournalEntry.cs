@@ -1,9 +1,7 @@
 // source code for JournalEntry Class
-// this stores a date, prompt, and 
+// this stores a date, prompt, and user response
 // Author: Dennis Skoy
-// last edit: 1/29/24
-
-using System.Runtime.InteropServices.Marshalling;
+// last edit: 2/1/24
 
 class JournalEntry
 {
@@ -14,15 +12,16 @@ class JournalEntry
 
 
     // Constructors
-    JournalEntry()// Default
+    //// Default
+    JournalEntry()
     {
         this._date = "";
         this._prompt = "";
         this._response = "";
     }
 
-    // Parameterized
-    JournalEntry(string _date, string _prompt, string _response)
+    //// Parameterized
+    public JournalEntry(string _date, string _prompt, string _response)
     {
         this._date = _date;
         this._prompt = _prompt;
@@ -63,11 +62,11 @@ class JournalEntry
         this._response = _response;
     }
 
-    // Member Method
+    // Member Methods
     public void Display()
     {
         Console.WriteLine(_date);
         Console.WriteLine(_prompt);
-        Console.WriteLine(_response);
+        Console.Write(_response);
     }
 }
