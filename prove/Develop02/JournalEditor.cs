@@ -1,7 +1,7 @@
 // source code for JournalEditor Class
 // This writes, saves, loads, and displays Journals from CSV files
 // Author: Dennis Skoy
-// last edit: 2/1/24
+// last edit: February 2024
 
 class JournalEditor
 {

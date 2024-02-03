@@ -1,7 +1,7 @@
 // This is the source code for the JournalPrompts Class
 // This contains prompts for the JournalEntry class to use
 // Author: Dennis Skoy
-// last edit: 2/1/24
+// last edit: February 2024
 
 static class JournalPrompts
 {
@@ -10,7 +10,7 @@ static class JournalPrompts
 
 
     // Member Methods
-    //// ReadToList Method
+    // // ReadToList Method
     private static List<string> ReadToList(string _filename)
     {
         string[] _lines = System.IO.File.ReadAllLines(_filename);// reads every line in the file
@@ -21,7 +21,7 @@ static class JournalPrompts
     }
 
 
-    //// DrawPrompt Method
+    // // DrawPrompt Method
     public static string DrawPrompt()
     {
         List<string> _prompts = ReadToList(_filename);// converts text document into a list of strings

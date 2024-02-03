@@ -1,7 +1,7 @@
 // Source code for Journal Class
 // This stores JournalEntries and their filenames in a list
 // Author: Dennis Skoy
-// last edit: 2/1/24
+// last edit: February 2024
 
 class Journal
 {
@@ -22,7 +22,10 @@ class Journal
         this._entries = _entries;
     }
 
-    public void Write()
+
+    // Member Methods
+    // // Write Method
+    public void Write()// Saves a new Entry to the _entries List
     {
         // Randomly Choose Prompt
         string _userPrompt = JournalPrompts.DrawPrompt();
@@ -41,11 +44,20 @@ class Journal
         _entries.Add(new JournalEntry(_userPrompt, _userResponse, _dateString));
     }
 
-    public void Display()
+
+    // // DisplayJournal Method
+    public void DisplayJournal()
     {
-        foreach (JournalEntry _page in _entries)
+        foreach (JournalEntry _page in _entries)// For every journal Entry
         {
-            Console.WriteLine(_page);
+            _page.Display();// print the contents
         }
+    }
+
+
+    // // SaveJournal Method
+    public void SaveJournal()
+    {
+        Console.Write("What is the filename?");
     }
 }

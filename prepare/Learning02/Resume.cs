@@ -1,7 +1,7 @@
 // Resume Class for Learning 02
 // Creates a list for storing Job objects
 // Author: Dennis Skoy
-// last edit: 1/29/24
+// last edit: 2/2/24
 public class Resume
 {
     // Attributes
@@ -10,6 +10,7 @@ public class Resume
 
     // List
     public List<Job> _jobs = new List<Job>();// list holding the owner's job history
+    private string v;
 
 
     // Constructors
@@ -18,6 +19,11 @@ public class Resume
     {
         this._name = "";
         this._jobs = [];
+    }
+
+    public Resume(string v)
+    {
+        this.v = v;
     }
 
 
