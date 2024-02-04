@@ -3,12 +3,11 @@
 // Author: Dennis Skoy
 // Last edit: February 2024
 
+
 class Program
 {
     static void Main(string[] args)// starts program for Develop02
-    {
-        Journal _currentJournal = new Journal();//  creates blank default Journal object
 
-        JournalEditor.UseMenu(_currentJournal);// uses default Journal to start the Menu
-    }
+    // creates blank default Journal object; uses default Journal to start the Menu
+    { Journal _currentJournal = new Journal(); JournalEditor.UseMenu(_currentJournal); }
 }

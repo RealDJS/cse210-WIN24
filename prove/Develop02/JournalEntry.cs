@@ -22,29 +22,21 @@ class JournalEntry
 
     // Getter Methods
     public string GetDate() { return _date; }
-
     public string GetPrompt() { return _prompt; }
-
     public string GetResponse() { return _response; }
 
 
     // Setter Methods
     public void SetDate(string _date) { this._date = _date; }
-
     public void SetPrompt(string _prompt) { this._prompt = _prompt; }
-
     public void SetResponse(string _response) { this._response = _response; }
 
 
     // Member Methods
-    // // Display Method
-    public void Display()
-    {
-        Console.WriteLine($"\n{_date}: {_prompt}\n{_response}\n");
-    }
+    // // Display Method: Displays the JournalEntry's data
+    public void Display() { Console.WriteLine($"\n{_date}: {_prompt}\n{_response}\n"); }
 
 
-    // // ToString Method
-    // saves all attributes into a single string
+    // // ToString Method: saves all attributes into a single string
     public override string ToString() { return $"{_date}<|>{_prompt}<|>{_response}"; }
 }

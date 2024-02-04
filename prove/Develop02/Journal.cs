@@ -16,42 +16,35 @@ class Journal
     public Journal() { this._filename = ""; this._entries = []; }
 
     // // Paramaterized Constructor
-    public Journal(string filename, List<JournalEntry> _entries)
-    { this._filename = filename; this._entries = _entries; }
+    public Journal(string filename, List<JournalEntry> _entries) { this._filename = filename; this._entries = _entries; }
 
 
     // Member Methods
     // // Write Method
     public void Write()// Saves a new Entry to the _entries List
     {
-        // Randomly Choose Prompt
-        string _userPrompt = JournalPrompts.DrawPrompt();
+        // Draws Prompt; Displays Prompt
+        string _userPrompt = JournalPrompts.DrawPrompt(); Console.Write($"{_userPrompt} ");
 
-        // Display Prompt
-        Console.Write($"{_userPrompt} ");
-
-        // User input
+        // User Response
         string _userResponse = Console.ReadLine();
 
-        // Entry Date
-        DateTime _date = DateTime.Now;
-        string _dateString = _date.ToShortDateString();
+        // Entry Date: Converts DateTime to a ShortDateString
+        DateTime _date = DateTime.Now; string _dateString = _date.ToShortDateString();
 
         // Saves the date, prompt, and response as an Entry
         _entries.Add(new JournalEntry(_dateString, _userPrompt, _userResponse));
     }
 
 
+
     // // DisplayJournal Method
-    public void DisplayJournal()
-    {
-        foreach (JournalEntry _page in _entries)// For every journal Entry
-        { _page.Display(); }// print the contents using the JournalEntry.Display method
-    }
+    // For every journal Entry, prints the contents using the JournalEntry.Display method
+    public void DisplayJournal() { foreach (JournalEntry _page in _entries) { JournalEditor.MakeBorder("."); _page.Display(); } }
 
 
-    // // SaveJournal Method
-    public void SaveJournal()// saves Journal to CSV file
+    // // SaveJournal Method: saves Journal to CSV file
+    public void SaveJournal()
     {
         using (StreamWriter _outputFile = new StreamWriter(FetchFileName()))//reads filename provided by user
         {
@@ -61,8 +54,8 @@ class Journal
     }
 
 
-    // // LoadJournal Method
-    public void LoadJournal()// Loads CSV file into Journal instances
+    // // LoadJournal Method: Loads CSV file into Journal instances
+    public void LoadJournal()
     {
         // Constants
         int _journalLength = 3;// matfhes # of JournalEntry Attributes
@@ -70,8 +63,8 @@ class Journal
         int _journalPrompt = 1;// Index 1
         int _journalResponse = 2;// Index 2
 
-        // Clears the _entries List
-        NewJournal();
+
+        NewJournal();// Clears the _entries List
 
         // Reads Entire File
         using StreamReader _file = new StreamReader(FetchFileName());// reads filename provided by user
@@ -87,19 +80,18 @@ class Journal
     }
 
 
-    // // FetchFileName Method
-    public string FetchFileName()// returns the user's CSV filename
-    { Console.Write("What is the filename?(.csv) "); _filename = Console.ReadLine(); return $"{_filename}.csv"; }
+    // // FetchFileName Method: returns a CSV filename
+    private string FetchFileName() { Console.Write("What is the filename?(.csv) "); _filename = Console.ReadLine(); return $"{_filename}.csv"; }
 
 
-    // // ClearJournal Method
+    // // ClearJournal Method: erases a Journal's _entries List
     public void NewJournal() { _entries.Clear(); }
 
 
-    // // EndJournal Method
-    public static void EndJournal() { Console.WriteLine("/nGoodbye"); Environment.Exit(0); }
+    // // EndJournal Method: exits program
+    public static void EndJournal() { Console.WriteLine("Goodbye"); Environment.Exit(0); }
 
 
-    // // DefaultOption Method
+    // // DefaultOption Method: prevents invalid inputs
     public static void DefaultOption() { Console.Write("\nNot an option. Read the options and try again"); Console.WriteLine(); }
 }

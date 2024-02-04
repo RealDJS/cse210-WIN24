@@ -12,28 +12,29 @@ class JournalEditor
         while (true)// Repeats while loop until they select Exit
         {
             // Displays Menu
+            MakeBorder("=");
+            Console.WriteLine("Choose what to do with your Journal:");
+            MakeBorder("=");
             Console.Write("""
-            
-        Choose what to do with your Journal:
-        1. Write a new Journal Entry
-        2. Display the Journal
-        3. Save the Journal
-        4. Load a Journal
-        5. Make a New Journal
-        6. Exit
-        """);
+            1. Write a new Journal Entry
+            2. Display the Journal
+            3. Save the Journal
+            4. Load a Journal
+            5. Make a New Journal
+            6. Exit
+            """);
+            Console.WriteLine(); MakeBorder("+");
 
-            // Asks User Input
-            Console.Write("\nUse 1-5 to select an option: "); var _option = Console.ReadLine();
-
-            // edits the _currentJournal with the selected _option
-            EditJournal(_currentJournal, _option);
+            // Asks for User Input
+            Console.Write("Use 1-5 to select an option: "); var _option = Console.ReadLine();
+            MakeBorder("+");
+            EditJournal(_currentJournal, _option);// edits the _currentJournal with the selected _option
         }
     }
 
 
-    // // EditJournal Method
-    public static void EditJournal(Journal _currentJournal, string _option)// executes option chosen by User
+    // // EditJournal Method: executes option chosen by user
+    private static void EditJournal(Journal _currentJournal, string _option)
     {
         Action _action = _option switch// Converts user's input to lambda expressions
         {
@@ -44,8 +45,10 @@ class JournalEditor
             "5" => () => _currentJournal.NewJournal(),// Starts a new Journal
             "6" => () => Journal.EndJournal(),// Exits the Program
             _ => () => Journal.DefaultOption()// Prevents invalid inputs
-        };
-
-        _action();// Executes the option
+        }; _action();// Executes the option
     }
+
+    // // Make Border: makes border's across the terminal for a better UX
+    public static void MakeBorder(string _character)
+    { Console.WriteLine(new string(_character[0], Console.WindowWidth - 1)); }
 }
