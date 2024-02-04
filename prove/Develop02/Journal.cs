@@ -81,7 +81,8 @@ class Journal
 
 
     // // FetchFileName Method: returns a CSV filename
-    private string FetchFileName() { Console.Write("What is the filename?(.csv) "); _filename = Console.ReadLine(); return $"{_filename}.csv"; }
+    private string FetchFileName()
+    { Console.Write("What is the filename?(.csv) "); _filename = Console.ReadLine(); return $"{_filename}.csv"; }
 
 
     // // ClearJournal Method: erases a Journal's _entries List

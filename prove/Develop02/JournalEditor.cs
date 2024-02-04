@@ -26,7 +26,7 @@ class JournalEditor
             Console.WriteLine(); MakeBorder("+");
 
             // Asks for User Input
-            Console.Write("Use 1-5 to select an option: "); var _option = Console.ReadLine();
+            Console.Write("Use 1-6 to select an option: "); var _option = Console.ReadLine();
             MakeBorder("+");
             EditJournal(_currentJournal, _option);// edits the _currentJournal with the selected _option
         }

@@ -8,6 +8,6 @@ class Program
 {
     static void Main(string[] args)// starts program for Develop02
 
-    // creates blank default Journal object; uses default Journal to start the Menu
+    // creates a blank default Journal object; uses the default Journal to start the Menu
     { Journal _currentJournal = new Journal(); JournalEditor.UseMenu(_currentJournal); }
 }
