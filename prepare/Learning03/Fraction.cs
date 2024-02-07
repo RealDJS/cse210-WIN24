@@ -25,6 +25,7 @@ class Fraction
     public int GetTopNumber() { return this._topNumber; }// returns _topNumber
     public int GetBottomNumber() { return this._bottomNumber; }// returns _bottomNumber
 
+
     // Setters
     public void SetTopNumber(int _topNumber) { this._topNumber = _topNumber; }// sets _topNumber
     public void SetBottomNumber(int _bottomNumber) { this._bottomNumber = _bottomNumber; }// sets _bottomNumber
