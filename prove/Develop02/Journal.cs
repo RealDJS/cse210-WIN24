@@ -12,15 +12,15 @@ class Journal
 
 
     // Constructors
-    // // Default
+    /** Default */
     public Journal() { this._filename = ""; this._entries = []; }
 
-    // // Paramaterized Constructor
+    /** Paramaterized Constructor */
     public Journal(string filename, List<JournalEntry> _entries) { this._filename = filename; this._entries = _entries; }
 
 
     // Member Methods
-    // // Write Method
+    /** Write Method */
     public void Write()// Saves a new Entry to the _entries List
     {
         // Draws Prompt; Displays Prompt
@@ -37,13 +37,12 @@ class Journal
     }
 
 
-
-    // // DisplayJournal Method
+    /** DisplayJournal Method */
     // For every journal Entry, prints the contents using the JournalEntry.Display method
     public void DisplayJournal() { foreach (JournalEntry _page in _entries) { JournalEditor.MakeBorder("."); _page.Display(); } }
 
 
-    // // SaveJournal Method: saves Journal to CSV file
+    /** SaveJournal Method: saves Journal to CSV file */
     public void SaveJournal()
     {
         using (StreamWriter _outputFile = new StreamWriter(FetchFileName()))//reads filename provided by user
@@ -54,7 +53,7 @@ class Journal
     }
 
 
-    // // LoadJournal Method: Loads CSV file into Journal instances
+    /** LoadJournal Method: Loads CSV file into Journal instances */
     public void LoadJournal()
     {
         // Constants
@@ -74,25 +73,25 @@ class Journal
         {
             var _parts = _line.Split("<|>");// returns each _line as an array of strings 
             if (_parts.Length == _journalLength)// checks if each line has the right number of items
-                // converts each line into their corresponding JournalEntry attributes
+                                                // converts each line into their corresponding JournalEntry attributes
                 _entries.Add(new JournalEntry(_parts[_journalDate], _parts[_journalPrompt], _parts[_journalResponse]));
         }
     }
 
 
-    // // FetchFileName Method: returns a CSV filename
+    /** FetchFileName Method: returns a CSV filename */
     private string FetchFileName()
     { Console.Write("What is the filename?(.csv) "); _filename = Console.ReadLine(); return $"{_filename}.csv"; }
 
 
-    // // ClearJournal Method: erases a Journal's _entries List
+    /** ClearJournal Method: erases a Journal's _entries List */
     public void NewJournal() { _entries.Clear(); }
 
 
-    // // EndJournal Method: exits program
+    /** EndJournal Method: exits program */
     public static void EndJournal() { Console.WriteLine("Goodbye"); Environment.Exit(0); }
 
 
-    // // DefaultOption Method: prevents invalid inputs
+    /** DefaultOption Method: prevents invalid inputs */
     public static void DefaultOption() { Console.Write("\nNot an option. Read the options and try again"); Console.WriteLine(); }
 }

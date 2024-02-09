@@ -16,13 +16,13 @@ class JournalEditor
             Console.WriteLine("Choose what to do with your Journal:");
             MakeBorder("=");
             Console.Write("""
-            1. Write a new Journal Entry
-            2. Display the Journal
-            3. Save the Journal
-            4. Load a Journal
-            5. Make a New Journal
-            6. Exit
-            """);
+			1. Write a new Journal Entry
+			2. Display the Journal
+			3. Save the Journal
+			4. Load a Journal
+			5. Make a New Journal
+			6. Exit
+			""");
             Console.WriteLine(); MakeBorder("+");
 
             // Asks for User Input
