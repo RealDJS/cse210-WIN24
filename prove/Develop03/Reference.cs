@@ -6,20 +6,54 @@
 
 // Reference
 
-// - scriptureReference: string
+// - book: string
+// - chapter: int
+// - verse: int
+// - endVerse: int
 
-// + GetScriptureReference(): string
-// + SetScriptureReference( scriptureReference: string): void
+// + GetBook(): string
+// + GetChapter(): int
+// + GetVerse(): int
+// + GetEndVerse(): int
+// + SetBook( scriptureReference: string): void
+// + SetChapter( chapter: int): void
+// + SetVerse( verse: int): void
+// + SetEndVerse( endVerse: int): void
+
+// + ReturnReferenceString(): string
 
 class Reference
 {
-    private string scriptureReference;// Attributes
+    // Attributes
+    private string book;// book name
+    private int chapter;// chapter in book
+    private int verse;// 1st verse in chapter
+    private int endVerse;// last verse in chapter
 
     // Constructors
-    public Reference() { this.scriptureReference = "Genesis 1:1"; }// Default
-    public Reference(string scriptureReference) { this.scriptureReference = scriptureReference; }// Paramaterized
+    public Reference() { this.book = "Genesis"; this.chapter = 1; this.verse = 1; this.endVerse = 0; }// Default
 
-    // Getter & Setter
-    public string GetReference() { return scriptureReference; }// Getter
-    public void SetReference(string scriptureReference) { this.scriptureReference = scriptureReference; }// Setter
+    public Reference(string book, int chapter, int verse, int endVerse)// Paramaterized
+    { this.book = book; this.chapter = chapter; this.verse = verse; this.endVerse = endVerse; }
+
+    // Getters
+    public string GetBook() { return book; }
+    public int GetChapter() { return chapter; }
+    public int GetVerse() { return verse; }
+    public int GetEndVerse() { return endVerse; }
+
+    // Setters
+    public void SetBook(string book) { this.book = book; }
+    public void SetChapter(int chapter) { this.chapter = chapter; }
+    public void SetVerse(int verse) { this.verse = verse; }
+    public void SetEndVerse(int endVerse) { this.endVerse = endVerse; }
+
+
+    // Methods
+    public string ReturnReferenceString()
+    {
+        string reference = $"{book} {chapter}:{verse} ";// default variable for reference
+        if (endVerse != 0) { return $"{reference}-{endVerse} "; }// if more than one verse
+        else { return reference; }// returns if one verse
+    }
 }

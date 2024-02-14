@@ -4,12 +4,13 @@
 
 // ScriptureMenu Class:
 
-// ScriptureMenu
+// UseMenu( currentScripture: Scripture)
 
 // + PromptUser(): void
 // + InsertBlanks(): void
 // + ClearAndRefresh(): void
 // + Quit(): void
+// + DefaultOption(): void
 
 class ScriptureMenu
 {
@@ -32,23 +33,25 @@ class ScriptureMenu
     private static void EditScripture(Scripture currentScripture, string input)
     {
         int wordCount = 3;// words to replace per round
-        Action action = input.ToLower() switch//
+        Action action = input.ToLower() switch
         {
             "quit" => () => Quit(),
-            "" => () => currentScripture.ReplaceWord(wordCount),
-            _ => () => Scripture.DefaultOption()
+            "" => () => currentScripture.EmptyWord(wordCount),
+            _ => () => DefaultOption()
         }; action();
     }
 
 
     /** PromptUser Method: prompts user to make input */
-    public static void PromptUser() { Console.WriteLine("Press enter or type 'quit'"); }
+    private static void PromptUser() { Console.WriteLine("Press enter or type 'quit'"); }
 
 
     /** ClearAndRefresh Method */
-    public static void ClearAndRefresh() { Console.Clear(); }
-
+    private static void ClearAndRefresh() { Console.Clear(); }
 
     /** Quit Method */
-    public static void Quit() { Environment.Exit(0); }
+    private static void Quit() { Environment.Exit(0); }
+
+    /** DefaultOption Method */
+    private static void DefaultOption() { Console.WriteLine("\nNot an option. Read your options and try again"); Console.WriteLine(); }
 }
