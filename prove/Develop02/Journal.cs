@@ -73,7 +73,7 @@ class Journal
         {
             var _parts = _line.Split("<|>");// returns each _line as an array of strings 
             if (_parts.Length == _journalLength)// checks if each line has the right number of items
-                                                // converts each line into their corresponding JournalEntry attributes
+                // converts each line into their corresponding JournalEntry attributes
                 _entries.Add(new JournalEntry(_parts[_journalDate], _parts[_journalPrompt], _parts[_journalResponse]));
         }
     }

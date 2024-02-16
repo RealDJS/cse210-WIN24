@@ -20,6 +20,7 @@ class Scripture
     // Attributes
     private Reference reference;// The Scripture's reference (ex. Genesis 1:1)
     private ScriptureText text;// The Scripture's text
+    private bool blank;// if scripture is completely empty or not
 
 
     // Constructors
@@ -27,7 +28,7 @@ class Scripture
     public Scripture() { this.reference = new Reference(); this.text = new ScriptureText(); }
 
     /** Paramaterized */
-    public Scripture(Reference reference, ScriptureText text) { this.reference = reference; this.text = text; }
+    public Scripture(Reference reference, ScriptureText text) { this.reference = reference; this.text = text; this.blank = false; }
 
 
     // Getter
@@ -39,9 +40,10 @@ class Scripture
     // Setter: converts a string to a List<Word> 
     public void SetReference(Reference reference) { this.reference = reference; }
     public void SetScriptureText(ScriptureText text) { this.text = text; }
+    public void SetNewBlanks(int number) { text.EmptyWords(number); }// sets "number" of words to blank boolean value
 
 
     // Member Methods
     /** DisplayScripture Method */
-    public void DisplayScripture() { Console.Write($"{reference.ReturnReferenceString()} {text}"); }
+    public void DisplayScripture() { Console.Write($"{reference.ReturnReferenceString()} {text.PrintText}"); }
 }

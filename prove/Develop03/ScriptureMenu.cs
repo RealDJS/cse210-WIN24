@@ -18,11 +18,11 @@ class ScriptureMenu
     {
         do
         {
-            ClearAndRefresh();
-            currentScripture.DisplayScripture();
-            PromptUser();
-            var input = Console.ReadLine();
-            EditScripture(currentScripture, input);
+            ClearAndRefresh();// clears the terminal
+            currentScripture.DisplayScripture();// displays the currentScripture
+            PromptUser();// displays the user's prompt
+            string input = Console.ReadLine();// reads user's input
+            EditScripture(currentScripture, input);// 
         }
         while (true);
     }
@@ -35,23 +35,26 @@ class ScriptureMenu
         int wordCount = 3;// words to replace per round
         Action action = input.ToLower() switch
         {
-            "quit" => () => Quit(),
-            "" => () => currentScripture.EmptyWord(wordCount),
-            _ => () => DefaultOption()
+            "quit" => () => Quit(),// leave program
+            "" => () => currentScripture.SetNewBlanks(wordCount),// removes words
+            _ => () => DefaultOption()// stops unacceptable unputs
         }; action();
     }
+
+
+    /** DefaultOption Method: warns about unacceptable inputs */
+    private static void DefaultOption()
+    { Console.WriteLine("\nNot an option. Read your options and try again"); Console.WriteLine(); }
 
 
     /** PromptUser Method: prompts user to make input */
     private static void PromptUser() { Console.WriteLine("Press enter or type 'quit'"); }
 
 
-    /** ClearAndRefresh Method */
+    /** ClearAndRefresh Method: clears console */
     private static void ClearAndRefresh() { Console.Clear(); }
 
-    /** Quit Method */
-    private static void Quit() { Environment.Exit(0); }
 
-    /** DefaultOption Method */
-    private static void DefaultOption() { Console.WriteLine("\nNot an option. Read your options and try again"); Console.WriteLine(); }
+    /** Quit Method: closes program */
+    private static void Quit() { Environment.Exit(0); }
 }
