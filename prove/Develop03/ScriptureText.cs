@@ -5,67 +5,88 @@
 // ScriptureText Class:
 
 
+
+
+using System.Text;
+
 public class ScriptureText
 {
-    // Attributes
-    private string text;// The text from the reference
-    private List<Word> words;// List of text
+	// Attributes
+	private List<Word> words;// List of text
 
-    /** characters to separate the scriptures by*/
-    internal static readonly char[] separator = [' ', '.', ',', '!', '?', ';', ':', '"', '[', ']', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-
-    public ScriptureText() { text = ""; words = []; }
-
-    // Getter
-    public string GetText() { return text; }
-
-    // Setter
-    public void SetWords(string text)
-    {
-        words.Clear(); // Clears the words Lists
-
-        // Splits the text by the arguments in "separator"
-        string[] splitText = text.Split(separator, StringSplitOptions.RemoveEmptyEntries);
-
-        // Adds each word and separator character to the words List
-        for (int i = 0; i < splitText.Length; i++)
-        {
-            Word word = new Word(splitText[i]);// the current character/string is a "word"
-            words.Add(word);// current word is added to list
-            if (!word.IsAlphabetic()) { word.SetIsCharacter(false); }// separator characters are not words
-        }
-    }
+	/** characters to separate the scriptures by*/
+	internal static readonly char[] separator = [' ', '.', ',', '!', '?', ';', ':', '"', '[', ']', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 
-    // Member Methods
-    /** EmptyWord Method: sets new words to Blank */
-    public void EmptyWords(int number)// number = how many words to replace
-    {
-        int start = 0;// counter
-        Random random = new();// Random integer generator
-        List<int> notBlanked = Enumerable.Range(0, words.Count).Where(i => !words[i].IsBlank() && words[i].IsAlphabetic()).ToList();
-        // int wordIndex = random.Next(0, words.Count);// selects word from the words List
+	public ScriptureText() { words = []; }
 
-        for (int i = start; i < number && notBlanked.Any(); i++)
-        {
-            int index = random.Next(notBlanked.Count);
-            words[notBlanked[index]].SetIsBlank(true);
-            notBlanked.RemoveAt(index);
-        }
+	// Getter
+	// public string GetText() { return text; }
 
-        // do
-        // {
-        // 	Word word = words[wordIndex];// the current word in the word list
-        // 	if (!word.IsAlphabetic())// if that word is not a separator:
-        // 	{ start++; word.SetIsBlank(true); }// adds to counter; sets the word to blank
-        // } while (start != number);// while we are not done removing "number" of words
-    }
+	// Setter
+	public void SetWords(string text)//keeps the original scripture's spacing and characters
+	{
+		words.Clear(); // Clears the words Lists
+		var wordBuffer = new StringBuilder();// new StringBuilder to modify the string and create words
+
+		foreach (char c in text)// for each character in the text
+		{
+			if (IsSeparator(c))// if a separator is found:
+			{
+				if (wordBuffer.Length > 0)// if it contains some characters
+				{
+					words.Add(new Word(wordBuffer.ToString()));// adds word accumulated in the wordBufferlist
+					wordBuffer.Clear();// clears the buffer to add the next word
+				}
+				words.Add(new Word(c.ToString(), character: true));// adds the separator as a word
+			}
+			else { wordBuffer.Append(c); }// current character is added to wordBuffer if it is not a separator
+
+		}
+		if (wordBuffer.Length > 0)// if any word is left
+		{ words.Add(new Word(wordBuffer.ToString())); }// adds the last word if there are any
+
+	}
 
 
-    public void PrintText()// Print words List
-    {
-        for (int i = 0; i < words.Count; i++) // for every word in the words list
-        { Console.Write(words[i].ToString()); }// returns string through the Word Class ToString method
-    }
+	// Member Methods
+	/** EmptyWord Method: blanks new words */
+	public void EmptyWords(int number)// number = how many words to replace
+	{
+		Random random = new();// Random integer generator
+
+		List<int> notBlanked = MakeBlankIndex();// creates list indexing words not blank or separators
+
+		for (int i = 0; i < number && notBlanked.Any(); i++)// for each word in the notBlanked
+		{
+			int index = random.Next(notBlanked.Count);// selects random index
+			words[notBlanked[index]].SetIsBlank(true);// changes the word to Blank
+			notBlanked.RemoveAt(index);// removes the index from the notBlanked List
+		}
+	}
+
+
+	/** MakeBlankIndex Method: lists word indexes that are not blank or separators*/
+	private List<int> MakeBlankIndex()
+	{
+		var wordIndexes = Enumerable.Range(0, words.Count);//Creates integer sequence from 0 to word count
+
+		// Filters word indexes that are NOT blanked and are not separators (Alphabetic)
+		var filteredIndexes = wordIndexes.Where(i => !words[i].IsBlank() && words[i].IsAlphabetic()).ToList();
+
+		return filteredIndexes.ToList();// returns list with these word indexes
+	}
+
+
+	/** IsSeparator Method: checks if character is a separator */
+	private static bool IsSeparator(char c) { return separator.Contains(c); }
+
+
+	/** HasWordsLeft Method: checks for remaining words in list */
+	public bool HasWordsLeft() { return words.Any(word => !word.IsBlank() && word.IsAlphabetic()); }
+
+
+	/**Prints words: Prints words List*/
+	// For every word in the words list; returns string through the Word.ToString() method
+	public void PrintText() { foreach (var word in words) { Console.Write(word.ToString()); } }
 }

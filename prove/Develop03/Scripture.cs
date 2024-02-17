@@ -20,15 +20,13 @@ class Scripture
     // Attributes
     private Reference reference;// The Scripture's reference (ex. Genesis 1:1)
     private ScriptureText text;// The Scripture's text
-    private bool blank;// if scripture is completely empty or not
-
 
     // Constructors
     /** Default */
     public Scripture() { this.reference = new Reference(); this.text = new ScriptureText(); }
 
     /** Paramaterized */
-    public Scripture(Reference reference, ScriptureText text) { this.reference = reference; this.text = text; this.blank = false; }
+    public Scripture(Reference reference, ScriptureText text) { this.reference = reference; this.text = text; }
 
 
     // Getter
@@ -45,5 +43,5 @@ class Scripture
 
     // Member Methods
     /** DisplayScripture Method */
-    public void DisplayScripture() { Console.Write($"{reference.ReturnReferenceString()} {text.PrintText}"); }
+    public void DisplayScripture() { Console.Write($"{reference.ReturnReferenceString()} "); text.PrintText(); }
 }

@@ -14,25 +14,27 @@
 
 class ScriptureMenu
 {
-    public static object UseMenu(Scripture currentScripture)
+    private const int wordCount = 3;// words to replace per round
+
+    public static void UseMenu(Scripture currentScripture)
     {
-        do
+
+        while (true)
         {
             ClearAndRefresh();// clears the terminal
             currentScripture.DisplayScripture();// displays the currentScripture
             PromptUser();// displays the user's prompt
             string input = Console.ReadLine();// reads user's input
-            EditScripture(currentScripture, input);// 
+            ManageInput(currentScripture, input);// registers the user's input
         }
-        while (true);
     }
 
 
     // Member Methods
     /** EditScripture*/
-    private static void EditScripture(Scripture currentScripture, string input)
+    private static void ManageInput(Scripture currentScripture, string input)
     {
-        int wordCount = 3;// words to replace per round
+        if (!currentScripture.GetScriptureText().HasWordsLeft()) { Quit(); }// quits if no words are left
         Action action = input.ToLower() switch
         {
             "quit" => () => Quit(),// leave program
@@ -44,11 +46,11 @@ class ScriptureMenu
 
     /** DefaultOption Method: warns about unacceptable inputs */
     private static void DefaultOption()
-    { Console.WriteLine("\nNot an option. Read your options and try again"); Console.WriteLine(); }
+    { Console.WriteLine("\nNot an option. Read your options and try again"); Console.WriteLine(); Console.ReadLine(); }
 
 
     /** PromptUser Method: prompts user to make input */
-    private static void PromptUser() { Console.WriteLine("Press enter or type 'quit'"); }
+    private static void PromptUser() { Console.WriteLine("\nPress enter or type 'quit'"); }
 
 
     /** ClearAndRefresh Method: clears console */

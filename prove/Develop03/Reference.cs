@@ -33,7 +33,10 @@ class Reference
     // Constructors
     public Reference() { this.book = "Genesis"; this.chapter = 1; this.verse = 1; this.endVerse = 0; }// Default
 
-    public Reference(string book, int chapter, int verse, int endVerse)// Paramaterized
+    public Reference(string book, int chapter, int verse)// Paramaterized: One verse
+    { this.book = book; this.chapter = chapter; this.verse = verse; }
+
+    public Reference(string book, int chapter, int verse, int endVerse)// Paramaterized: multiple verses
     { this.book = book; this.chapter = chapter; this.verse = verse; this.endVerse = endVerse; }
 
     // Getters
@@ -50,10 +53,7 @@ class Reference
 
 
     // Methods
-    public string ReturnReferenceString()
-    {
-        string reference = $"{book} {chapter}:{verse} ";// default variable for reference
-        if (endVerse != 0) { return $"{reference}-{endVerse} "; }// if more than one verse
-        else { return reference; }// returns if one verse
-    }
+    /** ReturnReferenceString Method: */
+    public string ReturnReferenceString()// IF endverse > verse, returns verse and endVerse
+    { return endVerse > verse ? $"{book} {chapter}:{verse}-{endVerse}" : $"{book} {chapter}:{verse}"; }
 }
