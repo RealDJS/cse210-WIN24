@@ -24,7 +24,6 @@ class ScriptureMenu
     /** UseMenu Method: sets up menu for user */
     public static void UseMenu(Scripture currentScripture)
     {
-
         while (true)
         {
             ClearAndRefresh();// clears the terminal

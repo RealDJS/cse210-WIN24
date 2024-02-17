@@ -13,6 +13,7 @@
 // + HasWordsLeft(): bool
 // + PrintText(): void
 
+
 using System.Text;
 
 class ScriptureText
@@ -48,7 +49,6 @@ class ScriptureText
         }
         if (wordBuffer.Length > 0)// if any word is left
         { words.Add(new Word(wordBuffer.ToString())); }// adds the last word if there are any
-
     }
 
 
