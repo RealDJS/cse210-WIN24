@@ -4,24 +4,28 @@
 
 // ScriptureText Class:
 
+// - words: List<Word>
 
-
+// + SetWords(text: string): void
+// + EmptyWords(text: string): void
+// + MakeBlankIndex(): List<int>
+// + IsSeparator(c: char): bool
+// + HasWordsLeft(): bool
+// + PrintText(): void
 
 using System.Text;
 
-public class ScriptureText
+class ScriptureText
 {
     // Attributes
     private readonly List<Word> words;// List of text
 
     /** characters to separate the scriptures by*/
-    internal static readonly char[] separator = [' ', '.', ',', '!', '?', ';', ':', '"', '[', ']', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    private static readonly char[] separator = [' ', '.', ',', '!', '?', ';', ':', '"', '[', ']', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-
+    // Constructor
     public ScriptureText() { words = []; }
 
-    // Getter
-    // public string GetText() { return text; }
 
     // Setter
     public void SetWords(string text)//keeps the original scripture's spacing and characters
@@ -41,7 +45,6 @@ public class ScriptureText
                 words.Add(new Word(c.ToString()));// adds the separator as a word
             }
             else { wordBuffer.Append(c); }// current character is added to wordBuffer if it is not a separator
-
         }
         if (wordBuffer.Length > 0)// if any word is left
         { words.Add(new Word(wordBuffer.ToString())); }// adds the last word if there are any
@@ -60,7 +63,7 @@ public class ScriptureText
         for (int i = 0; i < number && notBlanked.Any(); i++)// for each word in the notBlanked
         {
             int index = random.Next(notBlanked.Count);// selects random index
-            words[notBlanked[index]].SetIsBlank(true);// changes the word to Blank
+            words[notBlanked[index]].SetBlank(true);// changes the word to Blank
             notBlanked.RemoveAt(index);// removes the index from the notBlanked List
         }
     }

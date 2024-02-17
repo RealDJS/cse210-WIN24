@@ -4,18 +4,24 @@
 
 // ScriptureMenu Class:
 
-// UseMenu( currentScripture: Scripture)
+// wordCount: const int
 
+// UseMenu( currentScripture: Scripture): void
+
+// + ManageInput(): void
+// + DefaultOption(): void
 // + PromptUser(): void
-// + InsertBlanks(): void
 // + ClearAndRefresh(): void
 // + Quit(): void
-// + DefaultOption(): void
 
 class ScriptureMenu
 {
+    // Constant
     private const int wordCount = 3;// words to replace per round
 
+
+    // Member Methods
+    /** UseMenu Method: sets up menu for user */
     public static void UseMenu(Scripture currentScripture)
     {
 
@@ -30,7 +36,6 @@ class ScriptureMenu
     }
 
 
-    // Member Methods
     /** EditScripture*/
     private static void ManageInput(Scripture currentScripture, string input)
     {

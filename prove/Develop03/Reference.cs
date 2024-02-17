@@ -5,12 +5,22 @@
 // Reference Class
 
 // Reference
-
+// 
 // - book: string
 // - chapter: int
 // - verse: int
 // - endVerse: int
-
+// 
+// + Reference()
+// + Reference( 	book: string
+// 					chapter: int
+// 					verse: int )
+// 					
+// + Reference( 	book: string
+// 					chapter: int
+// 					verse: int
+// 					endVerse: int )
+// 
 // + GetBook(): string
 // + GetChapter(): int
 // + GetVerse(): int
@@ -19,7 +29,6 @@
 // + SetChapter( chapter: int): void
 // + SetVerse( verse: int): void
 // + SetEndVerse( endVerse: int): void
-
 // + ReturnReferenceString(): string
 
 class Reference

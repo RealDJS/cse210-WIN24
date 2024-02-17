@@ -4,15 +4,20 @@
 
 // Scripture Class:
 
-// Scripture
+// Scripture()
+// Scripture( 	
+// 				reference: Reference
+// 				text: ScriptureText )
 // 
 // - reference: Reference
 // - words: List<Word>
-// - blankedIndex: List<Word>
 // 
-// + SetWords(string text): void
+// + GetReference(): reference: Reference
+// + GetScriptureText(): text: Reference
+// + SetReference( reference: Reference ): void
+// + SetScriptureText( text: ScriptureText ): void
 // + DisplayScripture(): void
-// + EmptyWord(int number): void
+// + SetNewBlanks(int number): void
 
 
 class Scripture
@@ -35,7 +40,7 @@ class Scripture
     public ScriptureText GetScriptureText() { return text; }
 
 
-    // Setter: converts a string to a List<Word> 
+    // Setter 
     public void SetReference(Reference reference) { this.reference = reference; }
     public void SetScriptureText(ScriptureText text) { this.text = text; }
     public void SetNewBlanks(int number) { text.EmptyWords(number); }// sets "number" of words to blank boolean value
