@@ -6,10 +6,16 @@ class Program
 {
     static void Main(string[] args)
     {
-        MathAssignment assignment = new MathAssignment("Dennis Skoy", "Multiplication", "7.3", "8-19");
-
+        Assignment assignment = new Assignment("Dennis Skoy", "Multiplication");//Assignment
         Console.WriteLine(assignment.GetSummary());
-        Console.WriteLine(assignment.GetHomeworkList());
 
+
+        MathAssignment mathAssignment = new MathAssignment("Dennis Skoy", "Long Division", "7.3", "8-19");//MathAssignment
+        Console.WriteLine(mathAssignment.GetSummary());
+        Console.WriteLine(mathAssignment.GetHomeworkList());
+
+        WritingAssignment writingAssignment = new WritingAssignment("Dennis Skoy", "U.S. History", "Today");
+        Console.WriteLine(writingAssignment.GetSummary());
+        Console.WriteLine(writingAssignment.GetWritingInformation());
     }
 }
