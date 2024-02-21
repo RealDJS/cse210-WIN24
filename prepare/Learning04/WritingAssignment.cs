@@ -15,7 +15,6 @@ class WritingAssignment : Assignment
 
 
     // Member Methods
+    /** GetWritingInformation Method:  */
     public string GetWritingInformation() { return $"{title}"; }
-
-    // public WritingAssignment ()
 }

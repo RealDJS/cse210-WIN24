@@ -14,7 +14,7 @@ class Program
         Console.WriteLine(mathAssignment.GetSummary());
         Console.WriteLine(mathAssignment.GetHomeworkList());
 
-        WritingAssignment writingAssignment = new WritingAssignment("Dennis Skoy", "U.S. History", "Today");
+        WritingAssignment writingAssignment = new WritingAssignment("Dennis Skoy", "U.S. History", "Today");//WritingAssignment
         Console.WriteLine(writingAssignment.GetSummary());
         Console.WriteLine(writingAssignment.GetWritingInformation());
     }
