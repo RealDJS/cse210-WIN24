@@ -4,109 +4,107 @@
 
 // Activity Class
 
-public class Activity
+abstract class Activity
 {
-    // Attributes
-    private string startingMessage;
-    private string activityDescription;
-    private string prompt;
-    private int activityTime;
-    private string endingMessage;
-    readonly int miliseconds = 1000;// Const
+	// Attributes
+	protected string activityName;
+	protected string startingMessage;
+	protected string activityDescription;
+	protected string prompt;
+	protected int activityTime;
+	protected string endingMessage;
+	protected string timeReport;
+	protected readonly int miliseconds = 1000;// Const
 
 
-    // Constructor
-    public Activity()
-    {
-        startingMessage = "Hello";
-        activityDescription = "This is an activity";
-        prompt = "These are your instructions";
-        endingMessage = "Good job.";
-    }
+	// Constructor
+	public Activity()
+	{
+		activityName = "Base";
+		startingMessage = "Hello";
+		activityDescription = "This is an activity";
+		prompt = "These are your instructions";
+		activityTime = 30;
+		endingMessage = $"Well done!";
+		timeReport = $"You completed {activityTime} seconds of the {activityName} Activity.";
+	}
 
-    // Setter
-    public void SetActivityTime(int activityTime) { this.activityTime = activityTime; }
-
-    // Member Methods
-    /** RunActivityMethod(): runs activity for user */
-    public void RunActivity()
-    {
-        Console.Clear();
-        Display("");
-        DisplayStartingMessage();
-        DisplayActivityDescription();
-        AskForTime();
-        Console.Clear();
-        LoadingAnimation(activityTime);
-        DisplayPrompt();
-        DisplayEndingMessage();
-    }
-
-    /** Display Method: displays string on new line */
-    private static void Display(string words) { Console.WriteLine($"{words}"); }
+	// Setter
+	public void SetActivityTime(int activityTime) { this.activityTime = activityTime; }
 
 
-    /** Greeting Message */
-    private void DisplayStartingMessage() { Display(startingMessage); }// activity's starting message
+	// Member Methods
+	/** RunActivityMethod(): runs activity for user */
+	public void PresentActivity()
+	{
+		Console.Clear();
+		Display("");
+		Display(startingMessage);// activity's starting message
+		Display(activityDescription);// activity description
+		AskForTime();// sets activityTime
+		Console.Clear();
+		Display("Get Ready..."); LoadingAnimation(activityTime);// loading
+		RunActivity();
+		Display(endingMessage);//confirms end to activity
+		LoadingAnimation(3);
+		Display(timeReport);
+		LoadingAnimation(5);
+	}
 
 
-    /** DisplayActivityDescription Method: Explains Activity */
-    private void DisplayActivityDescription() { Console.WriteLine(activityDescription); }
-
-    /** AskForTime Method: retreives time from user */
-    private void AskForTime()
-    {
-        int loop = -1;
-        while (loop < 0)
-        {
-            Display("How long will you do this activity?: ");
-            string userInput = Console.ReadLine();
-            int userTime;
-            if (int.TryParse(userInput, out userTime) && userTime > 0)
-            {
-                SetActivityTime(userTime);
-                loop++;
-            }
-        };
-    }
+	/** RunActivity */
+	protected abstract void RunActivity();
 
 
-    /** DisplayPrompt Method: Provides instructions */
-    private void DisplayPrompt() { Display(prompt); }
+	/** Display Method: displays string on new line */
+	protected static void Display(string words) { Console.WriteLine($"{words}"); }
 
 
-    /** DisplayEndingMessage Method: confirms end to activity */
-    private void DisplayEndingMessage() { Display($"{endingMessage}. \nThis activity took {activityTime} seconds."); }
+	/** AskForTime Method: retreives time from user */
+	protected void AskForTime()
+	{
+		int loop = -1;
+		while (loop < 0)
+		{
+			Display("How long, in seconds, would you like your session?: ");
+			string userInput = Console.ReadLine();
+			if (int.TryParse(userInput, out int userTime) && userTime > 0)
+			{ SetActivityTime(userTime); loop++; }
+		};
+	}
+
+	
 
 
-    /** Countdown Method: counts down from time given by user */
-    public virtual void Countdown()
-    {
-        int timeLeft = activityTime / miliseconds;// convert to milliseconds
-        while (timeLeft > 0)// while there's time left
-        {
-            Console.Clear(); Console.WriteLine($"{timeLeft} seconds left");// shows time left
-            Thread.Sleep(miliseconds);// waits for this many miliseconds
-            timeLeft--;// lowers timeLeft by 1
-        }
-    }
+	/** Countdown Method: counts down from time given by user */
+	public virtual void Countdown(int activityTime)
+	{
+		int timeLeft = activityTime / miliseconds;// convert to milliseconds
+		while (timeLeft > 0)// while there's time left
+		{
+			Console.Clear(); Console.WriteLine($"{timeLeft} seconds left");// shows time left
+			Thread.Sleep(miliseconds);// waits for this many miliseconds
+			timeLeft--;// lowers timeLeft by 1
+		}
+	}
 
 
-    /** LoadingAnimation Method: displays animation in terminal */
-    private void LoadingAnimation(int animationTime)
-    {
-        int time = 0;
-        int convertedTime = animationTime * miliseconds;
-        while (time < convertedTime)// until time equals the activity's time limit
-        {
-            Console.Write($"\\");// writes a character
-            Thread.Sleep(250);// pauses for the given miliseconds
-            Console.Write("\b \b");// deletes previous character
-            Console.Write($"|");// writes new character
-            Thread.Sleep(250); Console.Write("\b \b"); Console.Write($"/");
-            Thread.Sleep(250); Console.Write("\b \b"); Console.Write($"—");
-            Thread.Sleep(250); Console.Write("\b \b");
-            time += 1000;// adds to time
-        }
-    }
+	/** LoadingAnimation Method: displays animation in terminal */
+	protected static void LoadingAnimation(int animationTime)
+	{
+		DateTime startTime = DateTime.Now;//Animation Start
+		DateTime endTime = startTime.AddSeconds(animationTime);// Animation End
+		DateTime currentTime = DateTime.Now;
+		while (currentTime < endTime)// until time equals the activity's time limit
+		{
+			Console.Write($"\\");// writes a character
+			Thread.Sleep(250);// pauses for the given miliseconds
+			Console.Write("\b \b");// deletes previous character
+			Console.Write($"|");// writes new character
+			Thread.Sleep(250); Console.Write("\b \b"); Console.Write($"/");
+			Thread.Sleep(250); Console.Write("\b \b"); Console.Write($"—");
+			Thread.Sleep(250); Console.Write("\b \b");
+			
+		}
+	}
 }

@@ -9,7 +9,9 @@ class Program
         Console.WriteLine("Hello Develop04 World!");
         // (hard to do, but maybe) make a list/dictionary for the program to iterate through instead of a menu
 
-        Activity activity = new();
-        activity.RunActivity();
+
+
+        BreathingActivity activity = new();
+        activity.PresentActivity();
     }
 }
