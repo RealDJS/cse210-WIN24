@@ -4,33 +4,27 @@
 
 // Activity Class
 
+
 abstract class Activity
 {
 	// Attributes
 	protected string activityName;
 	protected string startingMessage;
 	protected string activityDescription;
-	protected string prompt;
 	protected int activityTime;
 	protected string endingMessage;
-	protected string timeReport;
 	protected readonly int miliseconds = 1000;// Const
 
 
 	// Constructor
-	public Activity()
+	public Activity(string activityName, string startingMessage, string activityDescription)
 	{
-		activityName = "Base";
-		startingMessage = "Hello";
-		activityDescription = "This is an activity";
-		prompt = "These are your instructions";
-		activityTime = 30;
+		this.activityName = activityName;
+		this.startingMessage = startingMessage;
+		this.activityDescription = activityDescription;
+		this.activityTime = 0;
 		endingMessage = $"Well done!";
-		timeReport = $"You completed {activityTime} seconds of the {activityName} Activity.";
 	}
-
-	// Setter
-	public void SetActivityTime(int activityTime) { this.activityTime = activityTime; }
 
 
 	// Member Methods
@@ -38,22 +32,36 @@ abstract class Activity
 	public void PresentActivity()
 	{
 		Console.Clear();
-		Display("");
-		Display(startingMessage);// activity's starting message
-		Display(activityDescription);// activity description
-		AskForTime();// sets activityTime
-		Console.Clear();
-		Display("Get Ready..."); LoadingAnimation(activityTime);// loading
+		Display("Get Ready..."); LoadingAnimation(3);// loading
 		RunActivity();
-		Display(endingMessage);//confirms end to activity
-		LoadingAnimation(3);
-		Display(timeReport);
-		LoadingAnimation(5);
 	}
 
 
 	/** RunActivity */
 	protected abstract void RunActivity();
+
+
+	/** StartInstructions */
+	protected void StartInstructions()
+	{
+		Console.Clear();
+		Display("");
+		Display(startingMessage);// activity's starting message
+		Display(activityDescription);// activity description
+		AskForTime();// sets activityTime
+		Console.Clear();
+	}
+
+	/** EndActivity Method */
+	protected void EndActivity()
+	{
+		Display("");
+		Display(endingMessage);//confirms end to activity
+		Display("");
+		LoadingAnimation(3);
+		ReportActivity();
+		LoadingAnimation(3);
+	}
 
 
 	/** Display Method: displays string on new line */
@@ -63,28 +71,31 @@ abstract class Activity
 	/** AskForTime Method: retreives time from user */
 	protected void AskForTime()
 	{
-		int loop = -1;
-		while (loop < 0)
+		while (true)// loops indefinitely
 		{
 			Display("How long, in seconds, would you like your session?: ");
 			string userInput = Console.ReadLine();
+
 			if (int.TryParse(userInput, out int userTime) && userTime > 0)
-			{ SetActivityTime(userTime); loop++; }
-		};
+			{ this.activityTime = userTime; break; }
+
+			else { Display("Not an option. Try a positive integer"); }
+		}
 	}
 
-	
+
+	protected void ReportActivity()
+	{ Console.Write($"You completed {activityTime} seconds of the {activityName} Activity."); }
 
 
 	/** Countdown Method: counts down from time given by user */
-	public virtual void Countdown(int activityTime)
+	protected void Countdown(int activityTime)
 	{
-		int timeLeft = activityTime / miliseconds;// convert to milliseconds
-		while (timeLeft > 0)// while there's time left
+		for (int i = activityTime; i > 0; i--)
 		{
-			Console.Clear(); Console.WriteLine($"{timeLeft} seconds left");// shows time left
-			Thread.Sleep(miliseconds);// waits for this many miliseconds
-			timeLeft--;// lowers timeLeft by 1
+			Console.Write($"{i}");// shows time left
+			Thread.Sleep(miliseconds);// waits for this many miliseconds                                      
+			Console.Write("\b \b");
 		}
 	}
 
@@ -94,8 +105,8 @@ abstract class Activity
 	{
 		DateTime startTime = DateTime.Now;//Animation Start
 		DateTime endTime = startTime.AddSeconds(animationTime);// Animation End
-		DateTime currentTime = DateTime.Now;
-		while (currentTime < endTime)// until time equals the activity's time limit
+
+		while (DateTime.Now < endTime)// until time equals the activity's time limit
 		{
 			Console.Write($"\\");// writes a character
 			Thread.Sleep(250);// pauses for the given miliseconds
@@ -104,7 +115,6 @@ abstract class Activity
 			Thread.Sleep(250); Console.Write("\b \b"); Console.Write($"/");
 			Thread.Sleep(250); Console.Write("\b \b"); Console.Write($"—");
 			Thread.Sleep(250); Console.Write("\b \b");
-			
 		}
 	}
 }
