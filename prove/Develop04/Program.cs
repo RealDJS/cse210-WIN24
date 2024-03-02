@@ -12,6 +12,6 @@ class Program
 
 
         BreathingActivity activity = new();
-        activity.PresentActivity();
+        activity.RunActivity();
     }
 }
