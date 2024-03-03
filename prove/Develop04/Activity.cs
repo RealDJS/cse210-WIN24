@@ -1,6 +1,6 @@
 // Develop04 Source Code
 // Dennis Skoy
-// Last edit: Feb 2024
+// Last edit: Mar 2024
 
 // Activity Class
 
@@ -14,7 +14,7 @@ abstract class Activity
     protected int activityTime;
 
     // Constants
-    protected readonly int miliseconds = 1000;
+
     protected readonly int loadingLength = 3;
 
     // Constructor
@@ -23,13 +23,22 @@ abstract class Activity
 
 
     // Member Methods
+    /** PresentActivity */
+    public void PresentActivity()
+    {
+        StartInstructions();//shows instructions
+        RunActivity();//runs activity
+        EndActivity();//shows results
+    }
+
     /** RunActivity */
-    public abstract void RunActivity();
+    public abstract void RunActivity();//runs activity
 
 
     /** StartInstructions */
     protected void StartInstructions()
     {
+        Display("Get Ready..."); LoadingAnimation(3);// Pause
         Console.Clear();
         Display(startingMessage);// activity's starting message
         Display(activityDescription);// activity description
@@ -62,27 +71,19 @@ abstract class Activity
     {
         while (true)// loops indefinitely
         {
-            Display("How long, in seconds, would you like your session?: ");
-            string userInput = Console.ReadLine();
+            Display("How long, in seconds, would you like your session?: ");// asks for time
+            string userInput = Console.ReadLine();// reads inputs
 
-            if (int.TryParse(userInput, out int userTime) && userTime > 0)
+            if (int.TryParse(userInput, out int userTime) && userTime > 0)// if user enters a valid integer,
             { this.activityTime = userTime; break; }
 
-            else { Display("Not an option. Try a positive integer"); }
+            else { Display("Not an option. Try a positive integer"); }// prevents invalid inputs
         }
     }
 
 
-    /** Countdown Method: counts down from time given by user */
-    protected void Countdown(int activityTime)
-    {
-        for (int i = activityTime; i > 0; i--)
-        {
-            Console.Write($"{i}");      // shows time left
-            Thread.Sleep(miliseconds);  // waits for this many miliseconds                                      
-            Console.Write("\b \b");     // removes character
-        }
-    }
+    
+    
 
 
     /** LoadingAnimation Method: displays animation in terminal */
@@ -101,4 +102,7 @@ abstract class Activity
             Console.Write($"—"); Thread.Sleep(250); Console.Write("\b \b");// ""
         }
     }
+
+    /** SelectText*/
+    protected static void SelectText(TextReader text) { Console.Write($"{text.DrawText()} "); }
 }

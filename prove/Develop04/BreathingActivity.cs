@@ -1,6 +1,6 @@
 // Develop04 Source Code
 // Dennis Skoy
-// Last edit: Feb 2024
+// Last edit: Mar 2024
 
 // BreathingActivity Class
 
@@ -15,19 +15,17 @@ class BreathingActivity : Activity
 
 
     // Member Methods
-    public override void RunActivity()
+    public override void RunActivity() { BreatheInAndOut(); }// Breathing exercise    
+
+
+    /** BreatheInAndOut method: */
+    private void BreatheInAndOut()
     {
-        Console.Clear();
-        Display("Get Ready..."); LoadingAnimation(3);// Pause
-        StartInstructions();// Shows instructions
-
         var startingTime = DateTime.Now;// saves current time
-
         while ((DateTime.Now - startingTime).TotalSeconds < activityTime)// until (activityTime) seconds pass,
         {
             Console.Write("\nBreathe in..."); Countdown(4);
             Console.Write("\nNow Breathe out..."); Countdown(6);
         }
-        EndActivity();// shows Results
     }
 }

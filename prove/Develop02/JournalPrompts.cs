@@ -10,7 +10,7 @@ static class JournalPrompts
 
 
     // Member Methods
-    // // ReadToList Method: Converts prompts.txt to a list
+    // ReadToList Method: Converts prompts.txt to a list
     private static List<string> ReadToList(string _filename)
     {
         string[] _lines = File.ReadAllLines(_filename);// reads every line in the file
@@ -19,7 +19,7 @@ static class JournalPrompts
     }
 
 
-    // // DrawPrompt Method: Randomly selects prompt from prompts.txt
+    // DrawPrompt Method: Randomly selects prompt from prompts.txt
     public static string DrawPrompt()
     {
         List<string> _prompts = ReadToList(_filename);// converts text document into a list of strings
