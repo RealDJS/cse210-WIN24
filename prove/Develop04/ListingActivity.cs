@@ -25,9 +25,9 @@ class ListingActivity : Activity
     /**AskQuestion*/
     private void AskQuestion()
     {
-        Display("List as many responses as you can to the following response: ");
-        SelectText(listingQuestions); Countdown(loadingLength);
-        Display("");
+        Utility.Display("List as many responses as you can to the following response: ");
+        SelectText(listingQuestions); Utility.Countdown(loadingLength);
+        Utility.Display("");
     }
 
 
@@ -43,7 +43,7 @@ class ListingActivity : Activity
         var inputs = await CollectInputs(cts.Token);// list from user within timespan
 
         cts.Dispose();// shuts down the token
-        Display($"You listed {inputs.Count} items!!!");// shows results
+        Utility.Display($"You listed {inputs.Count} items!!!");// shows results
     }
 
 

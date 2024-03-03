@@ -24,8 +24,8 @@ class BreathingActivity : Activity
         var startingTime = DateTime.Now;// saves current time
         while ((DateTime.Now - startingTime).TotalSeconds < activityTime)// until (activityTime) seconds pass,
         {
-            Console.Write("\nBreathe in..."); Countdown(4);
-            Console.Write("\nNow Breathe out..."); Countdown(6);
+            Console.Write("\nBreathe in..."); Utility.Countdown(4);
+            Console.Write("\nNow Breathe out..."); Utility.Countdown(6);
         }
     }
 }

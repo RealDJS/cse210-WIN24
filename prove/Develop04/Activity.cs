@@ -14,7 +14,6 @@ abstract class Activity
     protected int activityTime;
 
     // Constants
-
     protected readonly int loadingLength = 3;
 
     // Constructor
@@ -38,10 +37,10 @@ abstract class Activity
     /** StartInstructions */
     protected void StartInstructions()
     {
-        Display("Get Ready..."); LoadingAnimation(3);// Pause
+        Utility.Display("Get Ready..."); Utility.LoadingAnimation(3);// Pause
         Console.Clear();
-        Display(startingMessage);// activity's starting message
-        Display(activityDescription);// activity description
+        Utility.Display(startingMessage);// activity's starting message
+        Utility.Display(activityDescription);// activity description
         AskForTime();// sets activityTime
         Console.Clear();
     }
@@ -49,21 +48,17 @@ abstract class Activity
 
     /** ReportActivity Method*/
     protected void ReportActivity()
-    { Console.Write($"You completed {activityTime} seconds of the {activityName} Activity."); Display(""); }
+    { Console.Write($"You completed {activityTime} seconds of the {activityName} Activity."); Utility.Display(""); }
 
 
     /** EndActivity Method */
     protected void EndActivity()
     {
-        Display("\nWell Done!!!");//confirms end to activity
-        LoadingAnimation(loadingLength);
+        Utility.Display("\nWell Done!!!");//confirms end to activity
+        Utility.LoadingAnimation(loadingLength);
         ReportActivity();
-        LoadingAnimation(loadingLength);
+        Utility.LoadingAnimation(loadingLength);
     }
-
-
-    /** Display Method: displays string on new line */
-    protected static void Display(string words) { Console.WriteLine($"{words}"); }
 
 
     /** AskForTime Method: retreives time from user */
@@ -71,37 +66,16 @@ abstract class Activity
     {
         while (true)// loops indefinitely
         {
-            Display("How long, in seconds, would you like your session?: ");// asks for time
+            Utility.Display("How long, in seconds, would you like your session?: ");// asks for time
             string userInput = Console.ReadLine();// reads inputs
 
             if (int.TryParse(userInput, out int userTime) && userTime > 0)// if user enters a valid integer,
             { this.activityTime = userTime; break; }
 
-            else { Display("Not an option. Try a positive integer"); }// prevents invalid inputs
+            else { Utility.Display("Not an option. Try a positive integer"); }// prevents invalid inputs
         }
     }
 
-
-    
-    
-
-
-    /** LoadingAnimation Method: displays animation in terminal */
-    protected static void LoadingAnimation(int animationTime)
-    {
-        DateTime startTime = DateTime.Now;//Animation Start
-        DateTime endTime = startTime.AddSeconds(animationTime);// Animation End
-
-        while (DateTime.Now < endTime)// until time equals the activity's time limit
-        {
-            Console.Write($"\\");   // 1. Writes a character
-            Thread.Sleep(250);      // 2. Pauses for the given miliseconds
-            Console.Write("\b \b"); // 3. Deletes previous character
-            Console.Write($"|"); Thread.Sleep(250); Console.Write("\b \b");// Repeats steps 1-3
-            Console.Write($"/"); Thread.Sleep(250); Console.Write("\b \b");// ""
-            Console.Write($"—"); Thread.Sleep(250); Console.Write("\b \b");// ""
-        }
-    }
 
     /** SelectText*/
     protected static void SelectText(TextReader text) { Console.Write($"{text.DrawText()} "); }

@@ -25,9 +25,9 @@ class ReflectionActivity : Activity
     /** AskAboutDay: asks user about day */
     private void AskAboutDay()
     {
-        Display("\nConsider the following prompt");
+        Utility.Display("\nConsider the following prompt");
         SelectText(prompts);//provides prompt
-        Display("\n When you have something in mind, press enter to continue");//
+        Utility.Display("\n When you have something in mind, press enter to continue");//
         Console.ReadLine();
     }
 
@@ -35,13 +35,11 @@ class ReflectionActivity : Activity
     /** AskAboutMoment: prompts user with questions */
     private void AskAboutMoment()
     {
-        Display("\nPonder on these questions as they relate to this experience");//
-        Display("You may begin in: "); Utility.Countdown(loadingLength);
-
+        Utility.Display("\nPonder on these questions as they relate to this experience");
+        Utility.Display("You may begin in: "); Utility.Countdown(loadingLength);
         Console.Clear();
-
         var startingTime = DateTime.Now;// activity start time
         while ((DateTime.Now - startingTime).TotalSeconds < activityTime)// until time runs out...
-        { Display(""); SelectText(quesitons); LoadingAnimation(10); }//provides questions
+        { Utility.Display(""); SelectText(quesitons); Utility.LoadingAnimation(10); }//provides questions
     }
 }
