@@ -6,37 +6,38 @@
 
 public static class Utility
 {
+    // Member Methods
+    public static void Display(string words) { Console.WriteLine($"{words}"); }// displays string on new line
 
-	/** Display Method: displays string on new line */
-	public static void Display(string words) { Console.WriteLine($"{words}"); }
-
-	/** Countdown Method: counts down from time given by user */
-	public static void Countdown(int activityTime)
-	{
-		int miliseconds = 1000;
-		for (int i = activityTime; i > 0; i--)// for every second left
-		{
-			Console.Write($"{i}");      // shows time left
-			Thread.Sleep(miliseconds);  // waits for this many miliseconds                                      
-			Console.Write("\b \b");     // removes character
-		}
-	}
+    /** Countdown Method: counts down from time given by user */
+    public static void Countdown(int activityTime)
+    {
+        int miliseconds = 1000;
+        for (int i = activityTime; i > 0; i--)// for every second left:
+        // shows time left; waits for this many miliseconds; removes character
+        { Console.Write($"{i}"); Thread.Sleep(miliseconds); Console.Write("\b \b"); }
+    }
 
 
-	/** LoadingAnimation Method: displays animation in terminal */
-	public static void LoadingAnimation(int animationTime)
-	{
-		DateTime startTime = DateTime.Now;//Animation Start
-		DateTime endTime = startTime.AddSeconds(animationTime);// Animation End
+    /** LoadingAnimation Method: displays animation in terminal */
+    public static void LoadingAnimation(int animationTime)
+    {
+        char[] aniFrames = new[] { '\\', '|', '/', '—' };// animation characters
+        DateTime startTime = DateTime.Now;//Animation Start
+        DateTime endTime = startTime.AddSeconds(animationTime);// Animation End
+        while (DateTime.Now < endTime)// until time equals the activity's time limit
+        {
+            foreach (var i in aniFrames)// iterates through animation list
+            {
+                if (DateTime.Now >= endTime) break;// stops when time's up; 
+                Console.Write($"{i}"); Thread.Sleep(250); Console.Write("\b \b");// Writes; Pauses; Deletes previous character
+            }
+        }
+    }
 
-		while (DateTime.Now < endTime)// until time equals the activity's time limit
-		{
-			Console.Write($"\\");   // 1. Writes a character
-			Thread.Sleep(250);      // 2. Pauses for the given miliseconds
-			Console.Write("\b \b"); // 3. Deletes previous character
-			Console.Write($"|"); Thread.Sleep(250); Console.Write("\b \b");// Repeats steps 1-3
-			Console.Write($"/"); Thread.Sleep(250); Console.Write("\b \b");// ""
-			Console.Write($"—"); Thread.Sleep(250); Console.Write("\b \b");// ""
-		}
-	}
+    /**Creates Border in terminal*/
+    public static void MakeBorder(string _character) { Console.WriteLine(new string(_character[0], Console.WindowWidth - 1)); }
+
+    public static void DefaultOption()// prevents invalid inputs
+    { Console.Write("\nNot an option. Read the options and try again "); Utility.LoadingAnimation(3); Console.Clear(); }
 }

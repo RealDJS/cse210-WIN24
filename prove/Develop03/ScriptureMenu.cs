@@ -35,7 +35,7 @@ class ScriptureMenu
     }
 
 
-    /** EditScripture*/
+    /** ManageInput */
     private static void ManageInput(Scripture currentScripture, string input)
     {
         if (!currentScripture.GetScriptureText().HasWordsLeft()) { Quit(); }// quits if no words are left

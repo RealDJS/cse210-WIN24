@@ -16,50 +16,40 @@ class ListingActivity : Activity
 
 
     // Member Methods
-    public override void RunActivity()
-    {
-        AskQuestion();//asks user question
-        SynchronizeList();// user provides answers within a timeframe
-    }
+    public override void RunActivity() { AskQuestion(); SynchronizeList(); }//asks user question; user provides answers within a timeframe
+
 
     /**AskQuestion*/
     private void AskQuestion()
     {
         Utility.Display("List as many responses as you can to the following response: ");
-        SelectText(listingQuestions); Utility.Countdown(loadingLength);
-        Utility.Display("");
+        Utility.MakeBorder("-"); SelectText(listingQuestions); Utility.Display(""); Utility.MakeBorder("-");
+        Utility.Countdown(loadingLength); Utility.Display("");
     }
 
 
-    /** Synchronize */
+    /** SynchronizeList: // syncs the methods together */
     private void SynchronizeList() { ListInputs().GetAwaiter().GetResult(); }
 
 
-    /** ListInputs:  */
-    // referred to ChatGPT for method. Comments are my own
+    /** ListInputs: Lists user's inputs within the activityTime */// referred to ChatGPT for method. Comments are my own
     private async Task ListInputs()
     {
         var cts = new CancellationTokenSource(TimeSpan.FromSeconds(activityTime));// creates timespan for activity
         var inputs = await CollectInputs(cts.Token);// list from user within timespan
-
-        cts.Dispose();// shuts down the token
-        Utility.Display($"You listed {inputs.Count} items!!!");// shows results
+        cts.Dispose(); Utility.Display($"You listed {inputs.Count} items!!!"); // shuts down the token; shows results
     }
 
 
-    /** CollectInputs Method: allows inputs to be collected while the timer is running */
-    // referred to ChatGPT for method. Comments are my own
+    /** CollectInputs Method: allows inputs to be collected while the timer is running */// referred to ChatGPT for method. Comments are my own
     private async Task<List<string>> CollectInputs(CancellationToken cancellationToken)
     {
         var inputs = new List<string>();//empty list for user inputs
         while (!cancellationToken.IsCancellationRequested)// while NOT requested to stop:
         {
-            if (Console.KeyAvailable)// if User pressed a key
-            {
-                var input = Console.ReadLine();         // read input
-                if (!string.IsNullOrWhiteSpace(input))  // if user does not return empty space:
-                { inputs.Add(input); }                  // adds input to List
-            }
+            if (Console.KeyAvailable)// IF User pressed a key:
+                                     // reads input; IF user enters anything: adds input to List
+            { var input = Console.ReadLine(); if (!string.IsNullOrWhiteSpace(input)) { inputs.Add(input); } }
             await Task.Delay(100);// waits 100 miliseconds before moving on
         }
         return inputs;//returns list

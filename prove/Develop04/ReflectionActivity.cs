@@ -12,11 +12,8 @@ class ReflectionActivity : Activity
 
 
     // Constructor
-    public ReflectionActivity() : base(
-        "Relection",
-        "Welcome to the Reflection Activity",
-        "This activity will help you reflect on times in your life you demonstrated strength and resilience. This will help you recognize your capabilities and how you can use it in other aspects of your life.")
-    { }
+    public ReflectionActivity() : base("Relection", "Welcome to the Reflection Activity", "This activity will help you reflect on times in your life you demonstrated strength and resilience. This will help you recognize your capabilities and how you can use it in other aspects of your life.") { }
+
 
     // Member Methods
     public override void RunActivity() { AskAboutDay(); AskAboutMoment(); }// prompts user; questions user
@@ -25,10 +22,11 @@ class ReflectionActivity : Activity
     /** AskAboutDay: asks user about day */
     private void AskAboutDay()
     {
-        Utility.Display("\nConsider the following prompt");
-        SelectText(prompts);//provides prompt
-        Utility.Display("\n When you have something in mind, press enter to continue");//
-        Console.ReadLine();
+        Utility.Display("Consider the following prompt: ");
+        Utility.MakeBorder("-");
+        SelectText(prompts); Utility.Display(""); //provides prompt
+        Utility.MakeBorder("-");
+        Utility.Display("\nWhen you have something in mind, press enter to continue"); Console.ReadLine();
     }
 
 
@@ -37,8 +35,7 @@ class ReflectionActivity : Activity
     {
         Utility.Display("\nPonder on these questions as they relate to this experience");
         Utility.Display("You may begin in: "); Utility.Countdown(loadingLength);
-        Console.Clear();
-        var startingTime = DateTime.Now;// activity start time
+        Console.Clear(); var startingTime = DateTime.Now;// activity start time
         while ((DateTime.Now - startingTime).TotalSeconds < activityTime)// until time runs out...
         { Utility.Display(""); SelectText(quesitons); Utility.LoadingAnimation(10); }//provides questions
     }

@@ -23,11 +23,10 @@ class TextReader
         return lines[lineIndex];// returns a random line as a string
     }
 
-    /** ReadToList */
+    /** ReadToList: returns each line as a list of strings */
     private static List<string> ReadToList(string filename)
     {
         string[] lines = File.ReadAllLines(filename);// reads every line in the file
-        List<string> list = new List<string>(lines);// creates list
-        return list;// returns each line as a list of strings
+        List<string> list = new List<string>(lines); return list;// creates/returns list
     }
 }

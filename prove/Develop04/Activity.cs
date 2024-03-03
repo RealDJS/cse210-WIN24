@@ -22,27 +22,20 @@ abstract class Activity
 
 
     // Member Methods
-    /** PresentActivity */
-    public void PresentActivity()
-    {
-        StartInstructions();//shows instructions
-        RunActivity();//runs activity
-        EndActivity();//shows results
-    }
+    /** PresentActivity: shows instructions; runs activity; shows results */
+    public void PresentActivity() { StartInstructions(); RunActivity(); EndActivity(); }
 
-    /** RunActivity */
+
     public abstract void RunActivity();//runs activity
 
 
     /** StartInstructions */
     protected void StartInstructions()
     {
-        Utility.Display("Get Ready..."); Utility.LoadingAnimation(3);// Pause
-        Console.Clear();
+        Utility.Display("Get Ready..."); Utility.LoadingAnimation(3); Console.Clear();// Pause
         Utility.Display(startingMessage);// activity's starting message
         Utility.Display(activityDescription);// activity description
-        AskForTime();// sets activityTime
-        Console.Clear();
+        AskForTime(); Console.Clear();// sets activityTime
     }
 
 
@@ -54,10 +47,8 @@ abstract class Activity
     /** EndActivity Method */
     protected void EndActivity()
     {
-        Utility.Display("\nWell Done!!!");//confirms end to activity
-        Utility.LoadingAnimation(loadingLength);
-        ReportActivity();
-        Utility.LoadingAnimation(loadingLength);
+        Utility.Display("\nWell Done!!!"); Utility.LoadingAnimation(loadingLength);//confirms end to activity
+        ReportActivity(); Utility.LoadingAnimation(loadingLength);
     }
 
 
@@ -69,14 +60,13 @@ abstract class Activity
             Utility.Display("How long, in seconds, would you like your session?: ");// asks for time
             string userInput = Console.ReadLine();// reads inputs
 
-            if (int.TryParse(userInput, out int userTime) && userTime > 0)// if user enters a valid integer,
-            { this.activityTime = userTime; break; }
-
+            // IF user enters a valid integer: returns activityTime
+            if (int.TryParse(userInput, out int userTime) && userTime > 0) { this.activityTime = userTime; break; }
             else { Utility.Display("Not an option. Try a positive integer"); }// prevents invalid inputs
         }
     }
 
 
-    /** SelectText*/
+    /** SelectText: writes text provided by TextReader*/
     protected static void SelectText(TextReader text) { Console.Write($"{text.DrawText()} "); }
 }
