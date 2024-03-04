@@ -1,4 +1,7 @@
-using System;
+// Learning05
+// Dennis Skoy
+// Mar 2024
+
 
 class Program
 {
