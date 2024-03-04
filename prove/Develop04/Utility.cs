@@ -14,7 +14,7 @@ public static class Utility
     {
         int miliseconds = 1000;
         for (int i = activityTime; i > 0; i--)// for every second left:
-        // shows time left; waits for this many miliseconds; removes character
+                                              // shows time left; waits for this many miliseconds; removes character
         { Console.Write($"{i}"); Thread.Sleep(miliseconds); Console.Write("\b \b"); }
     }
 
@@ -22,7 +22,7 @@ public static class Utility
     /** LoadingAnimation Method: displays animation in terminal */
     public static void LoadingAnimation(int animationTime)
     {
-        char[] aniFrames = new[] { '\\', '|', '/', '—' };// animation characters
+        char[] aniFrames = ['\\', '|', '/', '—'];// animation characters
         DateTime startTime = DateTime.Now;//Animation Start
         DateTime endTime = startTime.AddSeconds(animationTime);// Animation End
         while (DateTime.Now < endTime)// until time equals the activity's time limit
@@ -34,6 +34,7 @@ public static class Utility
             }
         }
     }
+
 
     /**Creates Border in terminal*/
     public static void MakeBorder(string _character) { Console.WriteLine(new string(_character[0], Console.WindowWidth - 1)); }
