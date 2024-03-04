@@ -1,0 +1,13 @@
+SmartDevice (abstract)
+    Attributes
+        - string name
+        - bool poweredOn
+        - DateTime timeOn
+
+    Methods
+        - tells how long they've been on
+
+
+SmartLight (subclass)
+    Attributes
+        - 
