@@ -2,34 +2,31 @@ using Internal;
 
 abstract class Employee
 {
-	public string name;
+    public string name;
 
-	public Employee(string name) { this.name = name; }
-	public abstract decimal CalculatePay();
+    public Employee(string name) { this.name = name; }
+    public abstract decimal CalculatePay();
 
 }
 
 class SalaryEmployee : Employee
 {
-	protected decimal annualSalary;
+    protected decimal annualSalary;
 
-	public SalaryEmployee(string name, decimal annualSalary) : base(name) { this.annualSalary = annualSalary; }
+    public SalaryEmployee(string name, decimal annualSalary) : base(name) { this.annualSalary = annualSalary; }
 
 
-	public override decimal CalculatePay()
-	{
-		return annualSalary / 26;// bi-weekly pay
-	}
+    public override decimal CalculatePay() { return annualSalary / 26; }// bi-weekly pay
 }
 
 class HourlyEmployee : Employee
 {
-	protected decimal hourlyRate;
-	protected int hoursWorked;
+    protected decimal hourlyRate;
+    protected int hoursWorked;
 
-	public HourlyEmployee(string name, decimal hourlyRate, int hoursWorked) : base(name) { this.hourlyRate = hourlyRate; this.hoursWorked = hoursWorked; }
+    public HourlyEmployee(string name, decimal hourlyRate, int hoursWorked) : base(name) { this.hourlyRate = hourlyRate; this.hoursWorked = hoursWorked; }
 
-	public override decimal CalculatePay() { return (hourlyRate * hoursWorked) * 2; }// bi-weekly pay
+    public override decimal CalculatePay() { return (hourlyRate * hoursWorked) * 2; }// bi-weekly pay
 
 }
 
