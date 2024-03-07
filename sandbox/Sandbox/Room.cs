@@ -6,50 +6,73 @@
 
 class Room
 {
+    // Attributes
     private List<SmartDevice> devices;
+
+    // Constructor
+    public Room() { this.devices = new List<SmartDevice>(); }
 
 
     // Member Methods
-    /** TurnOnLights */
-    public void TurnOnLights() { foreach (SmartDevice i in devices) { if (i is SmartLight) { i.SetPower(true); } } }
+    /** AddDevice: adds SmartDevices to devices */
+    private void AddDevice(SmartDevice device) { devices.Add(device); }
+    public void AddSmartTV(string name) { AddDevice(new SmartTV(name)); }//adds SmartTV
+    public void AddSmartHeater(string name) { AddDevice(new SmartHeater(name)); }//adds SmartHeater
+    public void AddSmartLight(string name) { AddDevice(new SmartLight(name)); }//addsSmartLight
 
 
-    /** TurnOnOffDevice */
-    public void TurnOnOffDevices() { foreach (SmartDevice i in devices) { i.SetPower(true); } }
+    /** IterateThroughDevices: goes through every item on devices */
+    private void IterateThroughDevices(Action<SmartDevice> action)
+    { foreach (var i in devices) { action(i); } }
 
 
-    /** TurnOnOffRoomDevices */
-    public void TurnOnOffDevices(bool power) { foreach (SmartDevice i in devices) { i.SetPower(power); } }
+    /** TurnOnLights: sets all SmartLights to true */
+    public void TurnOnLights()
+    { IterateThroughDevices(i => { if (i is SmartLight) { i.SetPower(true); } }); }
 
 
-    /** DisplayItemStatus */
-    public void DisplayItemStatus()
-    { foreach (SmartDevice i in devices) { Console.WriteLine($"{i.GetName()}: {i.GetPower()}"); } }
-
-
-    /** DisplayDevicesOn */
-    public void DisplayDevicesOn()
+    /** TurnOnOffDevice: sets any SmartDevice powerOn values */
+    private void TurnOnOffDevice(string name, bool powerOn)
     {
-        foreach (SmartDevice i in devices)
-        { if (i.GetPower()) Console.WriteLine($"{i.GetName()}"); }
+        var device = devices.FirstOrDefault(d => d.GetName().Equals(name, StringComparison.CurrentCultureIgnoreCase));// returns first item to match the string name
+        if (device != null) { device.SetPower(powerOn); }// turns on if device was found
+        else { Console.WriteLine("Device not found"); };
     }
+    public void TurnOnDevice(string name) { TurnOnOffDevice(name, true); }//turn on
+    public void TurnOffDevice(string name) { TurnOnOffDevice(name, false); }// turn off
 
 
-    /** DisplayItemOnLongest */
+    /** TurnOnOffRoomDevices: sets all SmartDevices powerON values */
+    public void TurnOnOffDevices(bool power) { IterateThroughDevices(i => { i.SetPower(power); }); }
+
+
+    /** DisplayItemStatus: displays item name and powerOn status */
+    public void DisplayItemStatus()
+    { IterateThroughDevices(i => { Console.WriteLine($"{i.GetName()}: {i.GetPower()}"); }); }
+
+
+    /** DisplayDevicesOn: displays devices with powerON true */
+    public void DisplayDevicesOn()
+    { IterateThroughDevices(i => { if (i.GetPower()) Console.WriteLine($"{i.GetName()}"); }); }
+
+
+
+    /** DisplayItemOnLongest: displays which item was on the longest */
     public void DisplayItemOnLongest()
     {
         SmartDevice deviceOnLongest = null;
-        double longestTimeOn = 0;
-        foreach (SmartDevice i in devices)
+        double longestTimeOn = -1;
+        IterateThroughDevices(i =>// for current item:
         {
-            if (deviceOnLongest.GetPower())
+            if (i.GetPower())// if item is on:
             {
-                double timeOn = deviceOnLongest.GetTimeOn(); if (timeOn > longestTimeOn) { longestTimeOn = timeOn; deviceOnLongest = i; }
+                double timeOn = i.GetTimeOn();// get time its been on
+                if (timeOn > longestTimeOn)// replaces deviceOnLongest if it has been on longer 
+                { longestTimeOn = timeOn; deviceOnLongest = i; }
             }
-        }
-
-        if (deviceOnLongest != null)
-        { Console.WriteLine($"{deviceOnLongest.GetName()} is on the longest"); }
-        else { Console.WriteLine("No devices on"); }
+        });
+        if (deviceOnLongest != null)// if the longest was found:
+        { Console.WriteLine($"{deviceOnLongest.GetName()} is on the longest"); }// names longest
+        else { Console.WriteLine("No devices on"); }// if no devices are on
     }
 }
