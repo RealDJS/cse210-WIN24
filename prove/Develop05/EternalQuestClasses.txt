@@ -1,0 +1,34 @@
+Menu
+
+
+
+Goal/
+    - goalId: int;
+    - goalName: string;
+    - description: string;
+    - points: int;
+
+    + Goal(string name, string description, int points)
+
+    + CompleteGoal(): void
+
+
+/Simple
+    - isDone: boolean;
+    Simple(): base(name, description, points) {}
+
+
+
+/Eternal
+    - howManyDone: int;
+
+
+/Checklist
+    - howManyDone: int;
+    - howManyNeeded: int;
+
+
+
+Score
+    - totalPoints: int;
+

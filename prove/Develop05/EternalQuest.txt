@@ -1,0 +1,59 @@
+What it does
+    - provide users points for doing:
+        - simple goals that can be marked complete
+        - eternal goals that never complete
+        - checklists goal to be done a certain number of times
+    - display user's score
+    - allow user to create any goal type
+    - allow user to record event (accomplishing goal and receiving points)
+    - display list of goals
+        - indicating what goals are completed or not
+            - (show how many times a checklist goal was completed)
+    - saves and loads the user's goals and current score            
+
+
+User inputs ( input )
+    - menu interface:
+        ( 1 ) "Make goal"
+            p. What type?
+                ( 1 ) Simple 
+                    p. "Enter name of goal"
+                        - ( userText )
+                            p. "Enter short description"
+                                - ( userText )
+                                    p. "How many points for this goal?"
+                ( 2 ) Eternal
+                    p. "Enter name of goal"
+                        - ( userText )
+                            p. "Enter short description"
+                                - ( userText )
+                                    p. "How many points for this goal?"
+                                        P. ( userInteger )
+
+                ( 3 ) Checklist
+                    p. "Enter name of goal"
+                        - ( userText )
+                            p. "Enter short description"
+                                - ( userText )
+                                    p. "How many points for this goal?"
+                                        - ( userInteger )
+                                        p. "How many times?
+                                            - ( userInteger )
+        ( 2 ) List Goals
+        ( 3 ) Save Goal
+        ( 4 ) Load Goals
+        ( 5 ) Record Event
+            p. "Which goal did you accomplish?"
+                (userInteger)
+        ( 6 ) Quit
+
+
+
+Output produced
+    - user's points
+    - List Goals
+    - menu options
+    - user's earned points
+
+How it ends
+    - User selects "Quit" in main menu
