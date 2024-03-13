@@ -14,7 +14,6 @@ class Eternal : Goal
 
     public override void CompleteGoal() { howManyDone++; }//adds one each time done
 
-    public override int GetPoints() { return CalcPoints(); }//returns points for completion
-
-    private int CalcPoints() { return howManyDone * points; }//
+    protected override int CalcPoints()
+    { return howManyDone * points; }
 }

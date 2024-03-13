@@ -19,5 +19,3 @@ FrontRoom.TurnOnAllLights();
 H.ListDevices();
 Thread.Sleep(3000);
 H.ListDevices();
-
-

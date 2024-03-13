@@ -13,11 +13,13 @@ public abstract class Goal
     protected bool isDone = false;//
 
     // Getter
-    public abstract int GetPoints();//returns points
+    public int GetPoints() { return CalcPoints(); }//returns points
 
     // Constructor
     public Goal(string name, string description, int points) { this.goalName = name; this.description = description; this.points = points; }
 
     // Methods
-    public virtual void CompleteGoal() { this.isDone = true; }
+    public abstract void CompleteGoal();
+
+    protected abstract int CalcPoints();
 }

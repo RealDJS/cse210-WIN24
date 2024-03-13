@@ -10,5 +10,9 @@ public class Simple : Goal
     Simple(string name, string description, int points) : base(name, description, points) { }
 
     // Methods
-    public override int GetPoints() { if (isDone) { return points; } else { return 0; } }//returns points if done
+
+    public override void CompleteGoal()
+    { this.isDone = true; }
+
+    protected override int CalcPoints() { if (isDone) { return points; } else { return 0; } }
 }
