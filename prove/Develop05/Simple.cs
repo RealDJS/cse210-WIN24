@@ -6,7 +6,9 @@
 
 public class Simple : Goal
 {
-	Simple(string name, string description, int points) : base(name, description, points) { }
+    // Constructor
+    Simple(string name, string description, int points) : base(name, description, points) { }
 
-	public override int GetPoints() { if (isDone) { return points; } else { return 0; } }
+    // Methods
+    public override int GetPoints() { if (isDone) { return points; } else { return 0; } }//returns points if done
 }

@@ -6,11 +6,15 @@
 
 class Eternal : Goal
 {
-    int howManyDone;
-    Eternal(string goalName, string description, int points, int howManyDone) : base(goalName, description, points) { }
+    // Attributes
+    int howManyDone = 0;// how many times it's been completed
 
-    public override int GetPoints()
-    {
-        throw new NotImplementedException();
-    }
+    // Constructor
+    Eternal(string goalName, string description, int points) : base(goalName, description, points) { }
+
+    public override void CompleteGoal() { howManyDone++; }//adds one each time done
+
+    public override int GetPoints() { return CalcPoints(); }//returns points for completion
+
+    private int CalcPoints() { return howManyDone * points; }//
 }

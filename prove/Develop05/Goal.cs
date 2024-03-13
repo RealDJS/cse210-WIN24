@@ -19,5 +19,5 @@ public abstract class Goal
     public Goal(string name, string description, int points) { this.goalName = name; this.description = description; this.points = points; }
 
     // Methods
-    public void CompleteGoal() { this.isDone = true; }
+    public virtual void CompleteGoal() { this.isDone = true; }
 }
