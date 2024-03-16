@@ -7,7 +7,6 @@
 class MindfulnessMenu
 {
     // Member Methods
-
     public static object UseMenu() { while (true) { DisplayMenu(); GetOption(); } }// loops indfinitly; presents options; gets user input
 
     private static void DisplayMenu()

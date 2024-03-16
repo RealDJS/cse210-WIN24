@@ -4,13 +4,14 @@
 
 // Eternal Quest
 
-class Eternal : Goal
+public class Eternal : Goal
 {
     // Attributes
     int howManyDone = 0;// how many times it's been completed
 
     // Constructor
-    Eternal(string goalName, string description, int points) : base(goalName, description, points) { }
+    public Eternal(string goalName, string description, int points) : base(goalName, description, points)
+    { this.indication = $"{howManyDone}]"; }
 
     public override void CompleteGoal() { howManyDone++; }//adds one each time done
 

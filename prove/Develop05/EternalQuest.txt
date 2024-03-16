@@ -39,6 +39,8 @@ User inputs ( input )
                                         - ( userInteger )
                                         p. "How many times?
                                             - ( userInteger )
+                                            p. "How many bonus points?"
+                                                -(userInteger)
         ( 2 ) List Goals
         ( 3 ) Save Goal
         ( 4 ) Load Goals
