@@ -7,15 +7,16 @@
 public class Simple : Goal
 {
     // Constructor
-    public Simple(string name, string description, int points) : base(name, description, points)
-    { this.indication = "[ ]"; }
+    public Simple() : base() { }
+
+    public Simple(string name, string description, int points) : base(name, description, points) { }
+
 
     // Methods
-    public override void CompleteGoal()
-    {
-        this.isDone = true;
-        this.indication = "[X]";
-    }
+    public override void CompleteGoal() { this.IsDone = true; }
 
-    protected override int CalcPoints() { if (isDone) { return points; } else { return 0; } }
+    public override string GetIndication() { if (IsDone) { return "[X]"; } else { return "[ ]"; } }
+
+
+    protected override int CalcPoints() { if (IsDone) { return Points; } else { return 0; } }
 }

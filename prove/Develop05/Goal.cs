@@ -4,26 +4,28 @@
 
 // Goal Class
 
-
 public abstract class Goal
 {
     // Attributes
-    protected string goalName;//name from user
-    protected string description;//description from user
-    protected int points;//points earned for completing goal
-    protected bool isDone = false;//if goal is done
-    protected string indication;//indicates how much of goal is done
+    public string GoalName { get; set; }//name from user
+    public string Description { get; set; } //description from user
+    public int Points { get; set; }//points from user
+    public bool IsDone { get; set; }
+    // public string Indication { get; set; }//indication of completion
 
     //Getters	
-    public string GetName() { return goalName; }//returns name
+    public string GetName() { return GoalName; }//returns name
 
     // Constructor
-    public Goal(string name, string description, int points) { this.goalName = name; this.description = description; this.points = points; }
+    public Goal() { this.GoalName = "Goal"; this.Description = "Description"; this.Points = 0; IsDone = false; }
+
+
+    public Goal(string name, string description, int points) { this.GoalName = name; this.Description = description; this.Points = points; }
 
 
     // Getter
     public int GetPoints() { return CalcPoints(); }//returns points
-    public string GetIndication() { return indication; }//returns indication
+    public abstract string GetIndication();
 
 
     // Methods
@@ -31,6 +33,6 @@ public abstract class Goal
 
     protected abstract int CalcPoints();//calculates points
 
-    public override string ToString() { return $"{indication} {goalName} - ({description})"; }//returns name and description
+    public override string ToString() { return $"{GetIndication()} {GoalName} - ({Description})"; }//returns name and description
 
 }

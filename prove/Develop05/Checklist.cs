@@ -7,18 +7,19 @@
 public class Checklist : Goal
 {
     // Attributes
-    private int howManyDone;
-    private int howManyNeeded;
-    private int bonusPoints;
+    public int HowManyDone { get; set; }// how many times it's been completed
+    public int HowManyNeeded { get; set; }// how many times it needs to be completed
+    public int BonusPoints { get; set; }// bonus points if completed
 
 
     //Constructor
-    public Checklist(string name, string description, int points, int howManyNeeded, int bonusPoints) : base(name, description, points)
+    public Checklist() : base() { HowManyDone = 0; HowManyNeeded = 0; BonusPoints = 0; }
+
+    public Checklist(string name, string description, int points, int HowManyNeeded, int BonusPoints) : base(name, description, points)
     {
-        this.howManyDone = 0;
-        this.howManyNeeded = howManyNeeded;
-        this.bonusPoints = bonusPoints;
-        this.indication = $"[{howManyDone}/{howManyNeeded}]";
+        HowManyDone = 0;
+        this.HowManyNeeded = HowManyNeeded;
+        this.BonusPoints = BonusPoints;
     }
 
 
@@ -26,16 +27,20 @@ public class Checklist : Goal
     /** CompleteGoal: adds to total if they haven't met the target number*/
     public override void CompleteGoal()
     {
-        if (howManyDone < howManyNeeded) { howManyDone++; }
+        if (HowManyDone < HowManyNeeded) { HowManyDone++; }
         else { Console.WriteLine("This goal is already complete."); }
     }
 
+    /** GetIndication: returns indication of completion*/
+    public override string GetIndication()
+    { if (IsDone) { return "[X]"; } else { return $"[{HowManyDone}/{HowManyNeeded}]"; } }
 
     /** CalcPoints: calculates points*/
     protected override int CalcPoints()
     {
-        int totalPoints = howManyDone * points;
-        if (isDone) { totalPoints += bonusPoints; }//adds bonus points if finished
+        if (HowManyDone == HowManyNeeded) { IsDone = true; }//if done, sets to true
+        int totalPoints = HowManyDone * Points;
+        if (IsDone) { totalPoints += BonusPoints; }//adds bonus points if finished
         return totalPoints;
     }
 }
