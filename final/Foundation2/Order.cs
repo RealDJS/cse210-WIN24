@@ -43,7 +43,7 @@ class Order
 
 
     /** ReturnPackingLabel: lists the name and productId of each product in the order */
-    public string ReturnPackingLabel()
+    private string ReturnPackingLabel()
     {
         string packingLabel = "";
         foreach (Product product in products)// for each product in the order
@@ -58,11 +58,11 @@ class Order
 
 
     /**ReturnShippingLabel: Lists the customer's name and address*/
-    public string ReturnShippingLabel() { return customer.ToString(); }
+    private string ReturnShippingLabel() { return customer.ToString(); }
 
 
     /**ReturnOrderCost: Returns the total cost of the order*/
-    public double ReturnOrderCost() { return CalcShippingCost() + CalcOrderTotal(); }// return the shipping cost plus the order total
+    private double ReturnOrderCost() { return CalcShippingCost() + CalcOrderTotal(); }// return the shipping cost plus the order total
 
 
     /** CalcOrderTotal: Returns the total cost of the order */

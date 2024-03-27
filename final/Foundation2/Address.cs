@@ -37,8 +37,7 @@ class Address
 
     // Methods
     /** ToString: Returns a string representation of the address */
-    public override string ToString()
-    { return streetAddress + "\n" + city + ", " + stateOrProvince + "\n" + country; }
+    public override string ToString() { return streetAddress + "\n" + city + ", " + stateOrProvince + "\n" + country; }
 
 
     /** IsUSA: Returns true if the address is in the USA */
