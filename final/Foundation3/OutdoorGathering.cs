@@ -2,7 +2,7 @@
 // Dennis Skoy
 // Mar 2024
 
-// OutdoorGathering class
+// OutdoorGathering : Event class
 
 class OutdoorGathering : Event
 

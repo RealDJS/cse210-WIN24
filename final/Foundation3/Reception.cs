@@ -2,7 +2,7 @@
 // Dennis Skoy
 // Mar 2024
 
-// Reception class
+// Reception : Event class
 
 class Reception : Event
 {

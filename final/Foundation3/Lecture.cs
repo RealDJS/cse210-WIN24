@@ -2,7 +2,7 @@
 // Dennis Skoy
 // Mar 2024
 
-// Lecture class
+// Lecture : Event class
 
 class Lecture : Event
 {

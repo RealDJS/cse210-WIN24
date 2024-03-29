@@ -1,4 +1,6 @@
-using System;
+// Foundation 3 source code
+// Dennis Skoy
+// Mar 2024
 
 class Program
 {
