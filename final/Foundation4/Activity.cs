@@ -4,7 +4,7 @@
 
 // Activity Class
 
-class Activity
+abstract class Activity
 {
     protected string name;// Activity's name
     protected string date;// Date of the activity in DD MMM YYYY format
@@ -31,7 +31,7 @@ class Activity
 
 
     //Methods
-    /**GetSummary: Returns a string with the date, length, distance, speed, and pace of the activity */
+    /**GetSummary: Displays the date, length, distance, speed, and pace of the activity */
     public void GetSummary()
     {
         Console.WriteLine($"\n{date} {name} ({length} min)- Distance: {CalcDistance()} miles, Speed: {CalcSpeed()} mph, Pace: {CalcPace()} min per mile");
