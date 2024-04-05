@@ -8,6 +8,7 @@ class Cycling : Activity
 {
     private double speed;// Speed of the activity in miles per hour
 
+
     // Constructor
     public Cycling(string date, double length, double speed) : base(date, length)
     {
@@ -24,5 +25,5 @@ class Cycling : Activity
 
     //Methods
     /**CalcPace: Returns activity's pace in minutes per mile*/
-    protected override double CalcSpeed() { return Math.Round(speed, 2); }
+    protected override double CalcSpeed() { return Math.Round(speed, DECIMAL_POINTS); }
 }

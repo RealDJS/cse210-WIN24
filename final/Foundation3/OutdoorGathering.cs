@@ -25,6 +25,5 @@ class OutdoorGathering : Event
 
     // Methods
     /** FullDetails: lists all StandardDetails plus type of event and information specific to the event type */
-    public override string FullDetails()
-    { return StandardDetails() + "\nWeather: " + weather; }
+    public override string FullDetails() { return StandardDetails() + "\nWeather: " + weather; }
 }

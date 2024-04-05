@@ -24,5 +24,5 @@ class Running : Activity
 
     //Methods
     /**CalcDistance: Returns activity's distance */
-    override protected double CalcDistance() { return Math.Round(distance, 2); }// Running distance is already in miles
+    override protected double CalcDistance() { return Math.Round(distance, DECIMAL_POINTS); }// Running distance is already in miles
 }

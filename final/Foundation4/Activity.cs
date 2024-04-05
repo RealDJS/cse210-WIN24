@@ -11,7 +11,8 @@ abstract class Activity
     protected double length;// Length of the activity in minutes
 
     // Constants
-    protected double MINUTES_PER_HOUR = 60;
+    protected double MINUTES_PER_HOUR = 60;// Number of minutes in an hour
+    protected int DECIMAL_POINTS = 2; // Number of decimal places to round to
 
     // Constructor
     public Activity(string date, double length)
@@ -41,20 +42,20 @@ abstract class Activity
     /**CalcDistance: Returns activity's distance in miles and rounded to two decimals */
     virtual protected double CalcDistance()
     {
-        return Math.Round(CalcSpeed() * (length / MINUTES_PER_HOUR), 2);// speed / time = distance
+        return Math.Round(CalcSpeed() * (length / MINUTES_PER_HOUR), DECIMAL_POINTS);// speed / time = distance
     }
 
 
     /**CalcSpeed: Returns activity's speed in miles per hour and rounded to two decimals*/
     virtual protected double CalcSpeed()
     {
-        return Math.Round(CalcDistance() / (length / MINUTES_PER_HOUR), 2);// distance / time = speed
+        return Math.Round(CalcDistance() / (length / MINUTES_PER_HOUR), DECIMAL_POINTS);// distance / time = speed
     }
 
 
     /**CalcPace: Returns activity's pace in minutes per mile and rounded to two decimals*/
     virtual protected double CalcPace()
     {
-        return Math.Round(length / CalcDistance(), 2);// time / distance = pace
+        return Math.Round(length / CalcDistance(), DECIMAL_POINTS);// time / distance = pace
     }
 }

@@ -10,7 +10,7 @@ class Swimming : Activity
 
     // Constants
     private int METERS_PER_LAP = 50;// Meters per lap
-    private int METERS_PER_KM = 1000;// Meters per kilometer
+    private int METERS = 1000;// Meters per kilometer
     private double MILES_PER_KM = 0.62;// Miles per kilometer
 
 
@@ -32,6 +32,6 @@ class Swimming : Activity
     /**CalcDistance: Returns activity's distance rounded to two decimals*/
     override protected double CalcDistance()
     {
-        return Math.Round((laps * METERS_PER_LAP) / (METERS_PER_KM * MILES_PER_KM), 2);// laps * meters per lap / meters per kilometer / miles per kilometer = distance
+        return Math.Round((laps * METERS_PER_LAP) / (METERS * MILES_PER_KM), DECIMAL_POINTS);// (laps * m/lap) / (m * mi/km) = distance
     }
 }

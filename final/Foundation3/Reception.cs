@@ -11,10 +11,8 @@ class Reception : Event
     // Constructor
     public Reception(string title, string description, string date, string time, Address address, string email)
         : base(title, description, date, time, address)
-    {
-        this.email = email;
-        this.eventType = "Reception";
-    }
+    { this.email = email; this.eventType = "Reception"; }
+
 
     // Getters
     public string GetEmail() { return email; }
@@ -24,6 +22,5 @@ class Reception : Event
 
     // Methods
     /** FullDetails: lists all StandardDetails plus type of event and information specific to the event type */
-    public override string FullDetails()
-    { return StandardDetails() + "\nRSVP to " + email; }
+    public override string FullDetails() { return StandardDetails() + "\nRSVP to " + email; }
 }
